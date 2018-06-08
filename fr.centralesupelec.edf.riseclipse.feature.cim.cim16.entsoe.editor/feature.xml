@@ -18,9 +18,9 @@
       http://wdi.supelec.fr/software/RiseClipse/
 -->
 <feature
-      id="fr.centralesupelec.edf.riseclipse.feature.iec61850.scl"
+      id="fr.centralesupelec.edf.riseclipse.feature.cim.cim16.entsoe.editor"
       label="%featureName"
-      version="1.0.3.qualifier"
+      version="1.0.1.qualifier"
       provider-name="%providerName">
 
    <description url="%descriptionURL">
@@ -40,26 +40,15 @@
       <discovery label="RiseClipse home" url="http://wdi.supelec.fr/software/RiseClipse/"/>
    </url>
 
-   <requires>
-      <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.emf.ecore.xmi"/>
-      <import plugin="fr.centralesupelec.edf.riseclipse.main"/>
-      <import plugin="org.eclipse.emf.edit"/>
-   </requires>
-
-   <plugin
-         id="fr.centralesupelec.edf.riseclipse.iec61850.scl"
-         download-size="0"
-         install-size="0"
+   <includes
+         id="fr.centralesupelec.edf.riseclipse.feature.editor"
          version="0.0.0"
-         unpack="false"/>
+         name="RiseClipse Editor"/>
 
-   <plugin
-         id="fr.centralesupelec.edf.riseclipse.iec61850.scl.edit"
-         download-size="0"
-         install-size="0"
+   <includes
+         id="fr.centralesupelec.edf.riseclipse.feature.cim.cim16.entsoe"
          version="0.0.0"
-         unpack="false"/>
+         name="Entsoe CGMED v2.4.15 support"/>
+
 
 </feature>

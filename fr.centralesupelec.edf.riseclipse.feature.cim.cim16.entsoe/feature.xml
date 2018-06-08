@@ -18,9 +18,9 @@
       http://wdi.supelec.fr/software/RiseClipse/
 -->
 <feature
-      id="fr.centralesupelec.edf.riseclipse.feature.iec61850.scl"
+      id="fr.centralesupelec.edf.riseclipse.feature.cim.cim16.entsoe"
       label="%featureName"
-      version="1.0.3.qualifier"
+      version="1.0.1.qualifier"
       provider-name="%providerName">
 
    <description url="%descriptionURL">
@@ -49,14 +49,42 @@
    </requires>
 
    <plugin
-         id="fr.centralesupelec.edf.riseclipse.iec61850.scl"
+         id="fr.centralesupelec.edf.riseclipse.cim.util"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="fr.centralesupelec.edf.riseclipse.iec61850.scl.edit"
+         id="fr.centralesupelec.edf.riseclipse.cim.headerModel"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="fr.centralesupelec.edf.riseclipse.cim.headerModel.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="fr.centralesupelec.edf.riseclipse.cim.cim16.util"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="fr.centralesupelec.edf.riseclipse.cim.cim16.entsoe-v2.4.15"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="fr.centralesupelec.edf.riseclipse.cim.cim16.entsoe-v2.4.15.edit"
          download-size="0"
          install-size="0"
          version="0.0.0"
