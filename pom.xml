@@ -4,6 +4,7 @@
  
   <groupId>fr.centralesupelec.edf.riseclipse</groupId>
   <artifactId>RiseClipseDeveloper</artifactId>
+  <version>1.0.8-SNAPSHOT</version>
   <packaging>pom</packaging>
   
   <parent>
@@ -21,12 +22,6 @@
   
   <modules>
     <module>fr.centralesupelec.edf.riseclipse.developer.maven</module>
-    <module>fr.centralesupelec.edf.riseclipse.feature.editor</module>
-    <module>fr.centralesupelec.edf.riseclipse.feature.iec61850.scl</module>
-    <module>fr.centralesupelec.edf.riseclipse.feature.iec61850.scl.editor</module>
-    <module>fr.centralesupelec.edf.riseclipse.feature.cim.cim16.entsoe</module>
-    <module>fr.centralesupelec.edf.riseclipse.feature.cim.cim16.entsoe.editor</module>
-    <module>fr.centralesupelec.edf.riseclipse.update-site</module>
   </modules>
 
 </project>
