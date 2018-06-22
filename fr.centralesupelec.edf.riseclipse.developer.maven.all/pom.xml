@@ -44,6 +44,7 @@
      -->
     <module>../../RiseClipseOCLValidator_SCL2003</module>
     <module>../../RiseClipseOCLValidator_EntsoeCim16</module>
+    <module>../../RiseClipseDistribution</module>
   </modules>
 
 </project>
