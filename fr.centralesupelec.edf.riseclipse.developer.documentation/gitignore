@@ -1,0 +1,29 @@
+# GIT exclusions
+# 
+# Patch/diff artifacts.
+*.patch
+*.diff
+*.orig
+*.rej
+
+# emacs artifacts.
+*~
+\#*\#
+
+# VI swap file
+*.swp
+
+# Mac OS X specific
+.DS_Store
+._*
+
+# Windows links.
+*.lnk
+
+# Eclipse specific
+bin/
+.metadata/
+
+# Maven
+target/
+

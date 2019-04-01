@@ -1,0 +1,13 @@
+[user]
+    name = 
+    email = 
+[core]
+    autocrlf = true
+    safecrlf = true
+    excludesfile = ~/.gitignore
+[branch]
+    autosetuprebase = always
+[diff]
+    renames = copies
+[color]
+    ui = true
