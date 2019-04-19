@@ -34,6 +34,8 @@
     
     <javax-inject-version>1</javax-inject-version>
     
+    <apache-lang3-version>3.9</apache-lang3-version>
+    
   </properties>
 
   <repositories>
