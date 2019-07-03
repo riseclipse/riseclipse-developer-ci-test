@@ -44,7 +44,7 @@
          replacing the 4.0.0 version)
      -->
     <module>../../RiseClipseValidator_SCL2003</module>
-    <module>../../RiseClipseOCLValidator_EntsoeCim16</module>
+    <module>../../RiseClipseValidator_CGMES-2-4-15</module>
     <module>../../RiseClipseDistribution</module>
 
   </modules>
