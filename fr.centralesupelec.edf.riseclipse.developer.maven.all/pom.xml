@@ -25,7 +25,6 @@
     <module>../../RiseClipseMetamodel_Cim16</module>
     <module>../../RiseClipseMetamodel_EntsoeCim16</module>
     <module>../../RiseClipseMetamodel_Cim17</module>
-    <module>../../RiseClipseMetamodel_iec61970cim17</module>
     <module>../../RiseClipseMetamodel_iec61970cim17_iec61968cim13</module>
     <module>../../RiseClipseMetamodel_SCL2003</module>
     <module>../../RiseClipseMetamodel_NSD2016</module>
