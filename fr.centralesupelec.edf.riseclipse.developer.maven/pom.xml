@@ -24,11 +24,11 @@
     
     <maven-shade-plugin-version>3.2.1</maven-shade-plugin-version>
     
-    <eclipse-equinox-app-version>1.4.100</eclipse-equinox-app-version>
-    <eclipse-emf-ecore-version>2.17.0</eclipse-emf-ecore-version>
-    <eclipse-emf-common-version>2.15.0</eclipse-emf-common-version>
-    <eclipse-emf-xmi-version>2.15.0</eclipse-emf-xmi-version>
-    <eclipse-ocl-version>1.7.0</eclipse-ocl-version>
+    <eclipse-equinox-app-version>1.4.200</eclipse-equinox-app-version>
+    <eclipse-emf-ecore-version>2.18.0</eclipse-emf-ecore-version>
+    <eclipse-emf-common-version>2.16.0</eclipse-emf-common-version>
+    <eclipse-emf-xmi-version>2.16.0</eclipse-emf-xmi-version>
+    <eclipse-ocl-version>1.8.0</eclipse-ocl-version>
     
     <log4j-version>1.2.17</log4j-version>
     
@@ -40,8 +40,8 @@
 
   <repositories>
     <repository>
-      <id>eclipse-2019-03</id>
-      <url>http://download.eclipse.org/releases/2019-03</url>
+      <id>eclipse-2019-06</id>
+      <url>http://download.eclipse.org/releases/2019-06</url>
       <layout>p2</layout>
     </repository>
   </repositories>
