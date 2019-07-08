@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
  
   <groupId>fr.centralesupelec.edf.riseclipse</groupId>
-  <artifactId>RiseClipseDeveloper</artifactId>
+  <artifactId>riseclipse-developer</artifactId>
   <version>1.0.8-SNAPSHOT</version>
   <packaging>pom</packaging>
   
@@ -15,8 +15,8 @@
   </parent>
 
   <scm>
-    <connection>scm:git:git@gitlab.centralesupelec.fr:RiseClipseGroup/RiseClipseDeveloper.git</connection>
-    <developerConnection>scm:git:git@gitlab.centralesupelec.fr:RiseClipseGroup/RiseClipseDeveloper.git</developerConnection>
+    <connection>scm:git:git@gitlab-research.centralesupelec.fr:RiseClipseGroup/riseclipse-developer.git</connection>
+    <developerConnection>scm:git:git@gitlab-research.centralesupelec.fr:RiseClipseGroup/riseclipse-developer.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
   

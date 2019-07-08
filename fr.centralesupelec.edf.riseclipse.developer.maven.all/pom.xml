@@ -18,17 +18,17 @@
   </parent>
 
   <modules>
-    <module>../../RiseClipseDeveloper</module>
-    <module>../../RiseClipseMain</module>
-    <module>../../RiseClipseEditor</module>
-    <module>../../RiseClipseMetamodel_Cim</module>
-    <module>../../RiseClipseMetamodel_Cim16</module>
-    <module>../../RiseClipseMetamodel_EntsoeCim16</module>
-    <module>../../RiseClipseMetamodel_Cim17</module>
-    <module>../../RiseClipseMetamodel_iec61970cim17_iec61968cim13</module>
-    <module>../../RiseClipseMetamodel_SCL2003</module>
-    <module>../../RiseClipseMetamodel_NSD2016</module>
-    <module>../../RiseClipseOCLValidator</module>
+    <module>../../riseclipse-developer</module>
+    <module>../../riseclipse-main</module>
+    <module>../../riseclipse-editor</module>
+    <module>../../riseclipse-metamodel-cim</module>
+    <module>../../riseclipse-metamodel-cim16</module>
+    <module>../../riseclipse-metamodel-cgmes-2-4-15</module>
+    <module>../../riseclipse-metamodel-cim17</module>
+    <module>../../riseclipse-metamodel-iec61970cim17-iec61968cim13</module>
+    <module>../../riseclipse-metamodel-scl2003</module>
+    <module>../../riseclipse-metamodel-nsd2016</module>
+    <module>../../riseclipse-validator-ocl</module>
     <!-- 
          To build standalone tools, eclipse dependencies must be installed using the command
            mvn eclipse:to-maven -DstripQualifier=true
@@ -42,9 +42,9 @@
          using the provided org.antlr.runtime-3.2.0.zip (unzip it in ~/.m2/repository/ 
          replacing the 4.0.0 version)
      -->
-    <module>../../RiseClipseValidator_SCL2003</module>
-    <module>../../RiseClipseValidator_CGMES-2-4-15</module>
-    <module>../../RiseClipseDistribution</module>
+    <module>../../riseclipse-validator-scl2003</module>
+    <module>../../riseclipse-validator-cgmes-2-4-15</module>
+    <module>../../riseclipse-distribution</module>
 
   </modules>
 
