@@ -1,0 +1,37 @@
+ ************************************************************************
+ *  Copyright (c) 2019 CentraleSupélec & EDF.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v2.0
+ *  which accompanies this distribution, and is available at
+ *  https://www.eclipse.org/legal/epl-v20.html
+ * 
+ *  This file is part of the RiseClipse tool
+ *  
+ *  Contributors:
+ *      Computer Science Department, CentraleSupélec
+ *      EDF R&D
+ *  Contacts:
+ *      dominique.marcadet@centralesupelec.fr
+ *      aurelie.dehouck-neveu@edf.fr
+ *  Web site:
+ *      http://wdi.supelec.fr/software/RiseClipse/
+ ************************************************************************
+
+Standalone tools
+    They can be used inside Eclipse (they are Eclipse plug-ins and configured to use their
+    required plug-ins) or outside after having been built.
+
+Metamodels
+    They are standards EMF models and can be used with any EMF compatible tool.
+
+Editor
+    The RiseClipse editor is based on the generic EMF editor wich some specific feature
+    like direct navigation from the selected object to another which is linked. OCL files
+    can be loaded and validation with them can be done with a direct access to the object
+    failing to validate a given constraint.
+    When RiseClipse is installed in an existing Eclipse instance using the update-site,
+    the RiseClipse editor can be used to open files conforming to installed metamodels.
+    When RiseClipse project are available in a workspace, a new Eclipse instance can be
+    launched to get the same behavior.
+
+

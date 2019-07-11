@@ -22,5 +22,8 @@ Files encoding
     
 
 Code formatter
-    A Java formatter file for Eclipse is given, it can be loaded in Preferences -> Java -> Code Style -> Formatter
+    A Java formatter file for Eclipse is given, it can be loaded in 
+    Preferences -> Java -> Code Style -> Formatter
+    
+
 

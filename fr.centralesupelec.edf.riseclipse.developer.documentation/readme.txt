@@ -18,7 +18,10 @@
  ************************************************************************
 
 buildingRiseClipse.txt
-    Some information for building RiseClipse tools
+    Some information for building RiseClipse plugins and tools
+
+usingRiseClipse.txt
+    Some information for using RiseClipse components
 
 documentation.txt
     Some rules followed in the development of RiseClipse
