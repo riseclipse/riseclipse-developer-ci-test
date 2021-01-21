@@ -1,10 +1,10 @@
 
 ### Building the fat jar SCL validator with Eclipse
-* Install **Eclipse IDE for Java Developers**
-* Install (*Help → Install New Software…*) **Eclipse plug-in development environment**
+* Install **Eclipse IDE for Eclipse Committers**
 * Import the **fr.centralesupelec.edf.riseclipse.developer.eclipse** Eclipse project from the [riseclipse-developer Git repository](https://github.com/riseclipse/riseclipse-developer/)
 * Open the **/fr.centralesupelec.edf.riseclipse.developer.eclipse/fr.centralesupelec.edf.riseclipse.developer.eclipse.target** file
-* Click on *Set as Active Target Platform*
+* Click on *Set as Active Target Platform*; the resolution of the target platform will take some time (needed artifacts are downloaded),
+the clicked text will change to *Reload Target Platform* when this is finished
 * Import the following Eclipse projects:
   * **fr.centralesupelec.edf.riseclipse.main** from [riseclipse-main Git repository](https://github.com/riseclipse/riseclipse-main/)
   * **fr.centralesupelec.edf.riseclipse.iec61850.scl** from [riseclipse-metamodel-scl2003 Git repository](https://github.com/riseclipse/riseclipse-metamodel-scl2003)
