@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+*************************************************************************
+**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  All rights reserved. This program and the accompanying materials
+**  are made available under the terms of the Eclipse Public License v2.0
+**  which accompanies this distribution, and is available at
+**  https://www.eclipse.org/legal/epl-v20.html
+** 
+**  This file is part of the RiseClipse tool
+**  
+**  Contributors:
+**      Computer Science Department, CentraleSupélec
+**      EDF R&D
+**  Contacts:
+**      dominique.marcadet@centralesupelec.fr
+**      aurelie.dehouck-neveu@edf.fr
+**  Web site:
+**      https://riseclipse.github.io
+*************************************************************************
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+ 
+  <groupId>fr.centralesupelec.edf.riseclipse</groupId>
+  <artifactId>fr.centralesupelec.edf.riseclipse.developer.maven.all</artifactId>
+  <version>1.0.2-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+  <parent>
+    <groupId>fr.centralesupelec.edf.riseclipse</groupId>
+    <artifactId>fr.centralesupelec.edf.riseclipse.developer.maven</artifactId>
+    <version>1.0.8-SNAPSHOT</version>
+    <relativePath>../fr.centralesupelec.edf.riseclipse.developer.maven/pom.xml</relativePath>
+  </parent>
+
+  <modules>
+    <module>../../riseclipse-developer</module>
+    <module>../../riseclipse-main</module>
+    <module>../../riseclipse-metamodel-scl2003</module>
+    <module>../../riseclipse-metamodel-nsd2016</module>
+    <module>../../riseclipse-validator-ocl</module>
+    <module>../../riseclipse-validator-scl2003</module>
+  </modules>
+
+</project>
