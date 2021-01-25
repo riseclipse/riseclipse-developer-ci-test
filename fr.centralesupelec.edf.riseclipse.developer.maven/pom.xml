@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 
 *************************************************************************
-**  Copyright (c) 2019 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -16,7 +16,7 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      https://riseclipse.github.io
 *************************************************************************
 -->
 
@@ -45,32 +45,6 @@
   <version>1.0.8-SNAPSHOT</version>
   <packaging>pom</packaging>
   
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    
-    <tycho-version>1.4.0</tycho-version>
-    
-    <unleash-maven-plugin-version>2.9.3</unleash-maven-plugin-version>
-    <unleash-scm-provider-git-version>2.2.0</unleash-scm-provider-git-version>
-    
-    <maven-shade-plugin-version>3.2.1</maven-shade-plugin-version>
-    
-    <eclipse-equinox-app-version>1.4.200</eclipse-equinox-app-version>
-    <eclipse-emf-ecore-version>2.18.0</eclipse-emf-ecore-version>
-    <eclipse-emf-common-version>2.16.0</eclipse-emf-common-version>
-    <eclipse-emf-xmi-version>2.16.0</eclipse-emf-xmi-version>
-    <eclipse-ocl-version>1.8.0</eclipse-ocl-version>
-    
-    <log4j-version>1.2.17</log4j-version>
-    
-    <javax-inject-version>1</javax-inject-version>
-    
-    <apache-lang3-version>3.9</apache-lang3-version>
-    
-  </properties>
-
   <repositories>
     <repository>
       <id>eclipse-2019-06</id>
@@ -94,6 +68,297 @@
     </repository>
   </distributionManagement>
       
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    
+    <tycho-version>1.4.0</tycho-version>
+    
+    <unleash-maven-plugin-version>2.9.3</unleash-maven-plugin-version>
+    <unleash-scm-provider-git-version>2.2.0</unleash-scm-provider-git-version>
+    
+    <maven-shade-plugin-version>3.2.1</maven-shade-plugin-version>
+
+    <!-- These version numbers are those used with an Eclipse build -->
+    <!-- They are obtained by checking "Copy required libraries into a sub-folder next to the generated JAR" when exporting as Runnable JAR -->
+    <com-google-guava-version>27.1.0</com-google-guava-version>
+    <com-google-inject-version>3.0.0</com-google-inject-version>
+    <javax-inject-version>1.0.0</javax-inject-version>
+    <org-antlr-runtime-version>3.2.0</org-antlr-runtime-version>
+    <org-apache-commons-lang3-version>3.1.0</org-apache-commons-lang3-version>
+    <org-apache-log4j-version>1.2.15</org-apache-log4j-version>
+    <org-eclipse-core-commands-version>3.9.400</org-eclipse-core-commands-version>
+    <org-eclipse-core-contenttype-version>3.7.300</org-eclipse-core-contenttype-version>
+    <org-eclipse-core-jobs-version>3.10.400</org-eclipse-core-jobs-version>
+    <org-eclipse-core-runtime-version>3.15.300</org-eclipse-core-runtime-version>
+    <org-eclipse-emf-common-version>2.16.0</org-eclipse-emf-common-version>
+    <org-eclipse-emf-ecore-change-version>2.14.0</org-eclipse-emf-ecore-change-version>
+    <org-eclipse-emf-ecore-xmi-version>2.16.0</org-eclipse-emf-ecore-xmi-version>
+    <org-eclipse-emf-ecore-version>2.18.0</org-eclipse-emf-ecore-version>
+    <org-eclipse-emf-edit-version>2.15.0</org-eclipse-emf-edit-version>
+    <org-eclipse-equinox-app-version>1.4.200</org-eclipse-equinox-app-version>
+    <org-eclipse-equinox-common-version>3.10.400</org-eclipse-equinox-common-version>
+    <org-eclipse-equinox-preferences-version>3.7.400</org-eclipse-equinox-preferences-version>
+    <org-eclipse-equinox-registry-version>3.8.400</org-eclipse-equinox-registry-version>
+    <org-eclipse-jdt-annotation-version>2.2.300</org-eclipse-jdt-annotation-version>
+    <org-eclipse-jface-version>3.16.0</org-eclipse-jface-version>
+    <org-eclipse-ocl-common-version>1.8.300</org-eclipse-ocl-common-version>
+    <org-eclipse-ocl-pivot-version>1.8.0</org-eclipse-ocl-pivot-version>
+    <org-eclipse-ocl-xtext-base-version>1.8.0</org-eclipse-ocl-xtext-base-version>
+    <org-eclipse-ocl-xtext-completeocl-version>1.8.0</org-eclipse-ocl-xtext-completeocl-version>
+    <org-eclipse-ocl-xtext-essentialocl-version>1.8.0</org-eclipse-ocl-xtext-essentialocl-version>
+    <org-eclipse-ocl-xtext-oclinecore-version>1.8.0</org-eclipse-ocl-xtext-oclinecore-version>
+    <org-eclipse-ocl-xtext-oclstdlib-version>1.8.0</org-eclipse-ocl-xtext-oclstdlib-version>
+    <org-eclipse-osgi-compatibility-state-version>1.1.500</org-eclipse-osgi-compatibility-state-version>
+    <org-eclipse-osgi-version>3.14.0</org-eclipse-osgi-version>
+    <org-eclipse-swt-version>3.111.0</org-eclipse-swt-version>
+    <org-eclipse-xtext-util-version>2.18.0</org-eclipse-xtext-util-version>
+    <org-eclipse-xtext-version>2.18.0</org-eclipse-xtext-version>
+  </properties>
+
+  <!-- Enforce versions of Eclipse used plugins  -->
+  <!-- The groupId and artifactId properties are those set by the p2_to_m2 tool -->
+  <dependencyManagement>
+    <dependencies>
+    
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>com.google.guava</artifactId>
+        <version>${com-google-guava-version}</version>
+      </dependency>
+    
+      <dependency>
+        <groupId>com.google.inject</groupId>
+        <artifactId>com.google.inject</artifactId>
+        <version>${com-google-inject-version}</version>
+      </dependency>
+    
+      <dependency>
+        <groupId>javax.inject</groupId>
+        <artifactId>javax.inject</artifactId>
+        <version>${javax-inject-version}</version>
+      </dependency>
+    
+      <dependency>
+        <groupId>org.antlr.runtime</groupId>
+        <artifactId>org.antlr.runtime</artifactId>
+        <version>${org-antlr-runtime-version}</version>
+      </dependency>
+    
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>org.apache.commons.lang3</artifactId>
+        <version>${org-apache-commons-lang3-version}</version>
+      </dependency>
+    
+      <dependency>
+        <groupId>org.apache.log4j</groupId>
+        <artifactId>org.apache.log4j</artifactId>
+        <version>${org-apache-log4j-version}</version>
+      </dependency>
+    
+      <dependency>
+         <groupId>org.eclipse.core</groupId>
+         <artifactId>org.eclipse.core.commands</artifactId>
+         <version>${org-eclipse-core-commands-version}</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.eclipse.core</groupId>
+         <artifactId>org.eclipse.core.contenttype</artifactId>
+         <version>${org-eclipse-core-contenttype-version}</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.eclipse.core</groupId>
+         <artifactId>org.eclipse.core.jobs</artifactId>
+         <version>${org-eclipse-core-jobs-version}</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.eclipse.core</groupId>
+         <artifactId>org.eclipse.core.runtime</artifactId>
+         <version>${org-eclipse-core-runtime-version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.eclipse.emf</groupId>
+        <artifactId>org.eclipse.emf.common</artifactId>
+        <version>${org-eclipse-emf-common-version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.emf</groupId>
+        <artifactId>org.eclipse.emf.ecore.change</artifactId>
+        <version>${org-eclipse-emf-ecore-change-version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.emf</groupId>
+        <artifactId>org.eclipse.emf.ecore.xmi</artifactId>
+        <version>${org-eclipse-emf-ecore-xmi-version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.emf</groupId>
+        <artifactId>org.eclipse.emf.ecore</artifactId>
+        <version>${org-eclipse-emf-ecore-version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.emf</groupId>
+        <artifactId>org.eclipse.emf.edit</artifactId>
+        <version>${org-eclipse-emf-edit-version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.equinox</groupId>
+        <artifactId>org.eclipse.equinox.app</artifactId>
+        <version>${org-eclipse-equinox-app-version}</version>
+      </dependency>
+    
+      <dependency>
+        <groupId>org.eclipse.equinox</groupId>
+        <artifactId>org.eclipse.equinox.common</artifactId>
+        <version>${org-eclipse-equinox-common-version}</version>
+      </dependency>
+    
+      <dependency>
+        <groupId>org.eclipse.equinox</groupId>
+        <artifactId>org.eclipse.equinox.preferences</artifactId>
+        <version>${org-eclipse-equinox-preferences-version}</version>
+      </dependency>
+    
+      <dependency>
+        <groupId>org.eclipse.equinox</groupId>
+        <artifactId>org.eclipse.equinox.registry</artifactId>
+        <version>${org-eclipse-equinox-registry-version}</version>
+      </dependency>
+    
+      <dependency>
+        <groupId>org.eclipse.jdt</groupId>
+        <artifactId>org.eclipse.jdt.annotation</artifactId>
+        <version>${org-eclipse-jdt-annotation-version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.jface</groupId>
+        <artifactId>org.eclipse.jface</artifactId>
+        <version>${org-eclipse-jface-version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.ocl</groupId>
+        <artifactId>org.eclipse.ocl.common</artifactId>
+        <version>${org-eclipse-ocl-common-version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.ocl</groupId>
+        <artifactId>org.eclipse.ocl.pivot</artifactId>
+        <exclusions>
+          <exclusion>
+            <!-- optional dependency, not needed -->
+            <groupId>org.eclipse.emf</groupId>
+            <artifactId>org.eclipse.emf.codegen.ecore</artifactId>
+          </exclusion>
+        </exclusions>
+        <version>${org-eclipse-ocl-pivot-version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.ocl</groupId>
+        <artifactId>org.eclipse.ocl.xtext.base</artifactId>
+        <version>${org-eclipse-ocl-xtext-base-version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.ocl</groupId>
+        <artifactId>org.eclipse.ocl.xtext.completeocl</artifactId>
+        <version>${org-eclipse-ocl-xtext-completeocl-version}</version>
+        <exclusions>
+          <exclusion>
+            <!-- optional dependency, not needed -->
+            <groupId>org.eclipse.ocl</groupId>
+            <artifactId>org.eclipse.ocl.pivot.uml</artifactId>
+          </exclusion>
+          <exclusion>
+            <!-- optional dependency, not needed -->
+            <groupId>org.eclipse.emf</groupId>
+            <artifactId>org.eclipse.emf.codegen</artifactId>
+          </exclusion>
+          <exclusion>
+            <!-- Wrong groupid in org.eclipse.xtext/2.25.0.M1, leading to wrong version -->
+            <groupId>org.eclipse.platform</groupId>
+            <artifactId>org.eclipse.equinox.common</artifactId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.ocl</groupId>
+        <artifactId>org.eclipse.ocl.xtext.essentialocl</artifactId>
+        <version>${org-eclipse-ocl-xtext-essentialocl-version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.ocl</groupId>
+        <artifactId>org.eclipse.ocl.xtext.oclinecore</artifactId>
+        <version>${org-eclipse-ocl-xtext-oclinecore-version}</version>
+      </dependency>
+    
+      <dependency>
+        <groupId>org.eclipse.ocl</groupId>
+        <artifactId>org.eclipse.ocl.xtext.oclstdlib</artifactId>
+        <version>${org-eclipse-ocl-xtext-oclstdlib-version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.osgi</groupId>
+        <artifactId>org.eclipse.osgi.compatibility.state</artifactId>
+        <version>${org-eclipse-osgi-compatibility-state-version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.osgi</groupId>
+        <artifactId>org.eclipse.osgi</artifactId>
+        <version>${org-eclipse-osgi-version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.swt</groupId>
+        <artifactId>org.eclipse.swt</artifactId>
+        <version>${org-eclipse-swt-version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.xtext</groupId>
+        <artifactId>org.eclipse.xtext</artifactId>
+        <version>${org-eclipse-xtext-version}</version>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.eclipse.xtext</groupId>
+        <artifactId>org.eclipse.xtext.util</artifactId>
+        <exclusions>
+          <exclusion>
+            <!-- optional dependency, not needed -->
+            <groupId>org.eclipse.emf</groupId>
+            <artifactId>org.eclipse.emf.codegen.ecore</artifactId>
+          </exclusion>
+          <exclusion>
+            <!-- optional dependency, not needed -->
+            <groupId>org.eclipse.xtend</groupId>
+            <artifactId>org.eclipse.xtend.lib</artifactId>
+          </exclusion>
+        </exclusions>
+        <version>${org-eclipse-xtext-util-version}</version>
+      </dependency>
+      
+    </dependencies>
+  </dependencyManagement>
+
   <build>
     <pluginManagement>
       <plugins>
@@ -225,6 +490,15 @@
           <pomDependencies>consider</pomDependencies>
         </configuration>
         -->
+        <configuration>
+          <target>
+            <artifact>
+              <groupId>fr.centralesupelec.edf.riseclipse</groupId>
+              <artifactId>fr.centralesupelec.edf.riseclipse.developer.eclipse</artifactId>
+              <version>1.0.0-SNAPSHOT</version>
+            </artifact>
+          </target>
+        </configuration>
       </plugin>
 
       <plugin>
