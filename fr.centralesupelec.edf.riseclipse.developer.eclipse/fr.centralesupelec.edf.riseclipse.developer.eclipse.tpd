@@ -1,0 +1,30 @@
+
+target "fr.centralesupelec.edf.riseclipse.developer.eclipse"
+
+environment JavaSE-1.8
+
+location "http://download.eclipse.org/releases/2019-06" {
+	org.eclipse.core.commands
+	org.eclipse.platform.feature.group
+    org.eclipse.equinox.executable.feature.group
+    org.eclipse.jdt.annotation
+    org.eclipse.swt
+    org.eclipse.jface
+    org.eclipse.emf.ecore.feature.group
+    org.eclipse.emf.edit.feature.group
+    org.eclipse.emf.edit.ui.feature.group
+    org.eclipse.emf.common.feature.group
+    org.eclipse.emf.common.ui.feature.group
+    org.eclipse.ocl.unified.core.feature.group
+    org.apache.log4j
+    org.eclipse.xtext
+    org.eclipse.xtext.util
+}
+
+location "https://download.eclipse.org/tools/orbit/downloads/drops/R20190602212107/repository/" orbit-2019-06 {
+    org.apache.commons.lang3
+    com.google.guava
+    com.google.inject
+    org.antlr.runtime [3.2.0,4.0.0)
+}
+

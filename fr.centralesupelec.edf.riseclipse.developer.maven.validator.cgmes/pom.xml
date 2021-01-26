@@ -28,27 +28,26 @@
   <modelVersion>4.0.0</modelVersion>
  
   <groupId>fr.centralesupelec.edf.riseclipse</groupId>
-  <artifactId>riseclipse-developer</artifactId>
-  <version>1.0.8-SNAPSHOT</version>
+  <artifactId>fr.centralesupelec.edf.riseclipse.developer.maven.validator.cgmes</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   
   <parent>
     <groupId>fr.centralesupelec.edf.riseclipse</groupId>
     <artifactId>fr.centralesupelec.edf.riseclipse.developer.maven</artifactId>
     <version>1.0.8-SNAPSHOT</version>
-    <relativePath>fr.centralesupelec.edf.riseclipse.developer.maven/pom.xml</relativePath>
+    <relativePath>../fr.centralesupelec.edf.riseclipse.developer.maven/pom.xml</relativePath>
   </parent>
 
-  <scm>
-    <connection>scm:git:git@gitlab-research.centralesupelec.fr:RiseClipseGroup/riseclipse-developer.git</connection>
-    <developerConnection>scm:git:git@gitlab-research.centralesupelec.fr:RiseClipseGroup/riseclipse-developer.git</developerConnection>
-    <tag>HEAD</tag>
-  </scm>
-  
   <modules>
-    <module>fr.centralesupelec.edf.riseclipse.developer.maven</module>
-    <module>fr.centralesupelec.edf.riseclipse.developer.eclipse</module>
-    <module>fr.centralesupelec.edf.riseclipse.developer.p2_to_m2</module>
+    <module>../../riseclipse-developer</module>
+    <module>../../riseclipse-main</module>
+    <module>../../riseclipse-metamodel-cim</module>
+    <module>../../riseclipse-metamodel-cim16</module>
+    <module>../../riseclipse-metamodel-cgmes-2-4-15</module>
+    <module>../../riseclipse-validator-ocl</module>
+    <module>../../riseclipse-validator-cgmes-2-4-15</module>
+    <module>../../riseclipse-distribution</module>
   </modules>
 
 </project>
