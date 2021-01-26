@@ -28,8 +28,8 @@
   <modelVersion>4.0.0</modelVersion>
  
   <groupId>fr.centralesupelec.edf.riseclipse</groupId>
-  <artifactId>fr.centralesupelec.edf.riseclipse.developer.maven.all</artifactId>
-  <version>1.0.2-SNAPSHOT</version>
+  <artifactId>fr.centralesupelec.edf.riseclipse.developer.maven.validator.scl</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   
   <parent>
