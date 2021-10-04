@@ -23,7 +23,7 @@
 <aggregator:Aggregation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:aggregator="http://www.eclipse.org/cbi/p2repo/2011/aggregator/1.1.0" label="Eclipse Projects for RiseClipse" packedStrategy="UNPACK" mavenResult="true" versionFormat="MavenRelease">
   <validationSets label="Eclipse needed projects for RiseClipse">
     <contributions label="Eclipse Platform 2019-06">
-      <repositories location="https://download.eclipse.org/releases/2019-06/201906071000">
+      <repositories location="https://download.eclipse.org/releases/2019-06/201906191000">
         <bundles name="org.eclipse.core.commands" versionRange="3.9.400"/>
         <bundles name="org.eclipse.core.contenttype" versionRange="3.7.300"/>
         <bundles name="org.eclipse.core.jobs" versionRange="3.10.400"/>
@@ -38,7 +38,7 @@
       </repositories>
     </contributions>
     <contributions label="EMF 2.18">
-      <repositories location="https://download.eclipse.org/releases/2019-06/201906071000">
+      <repositories location="https://download.eclipse.org/releases/2019-06/201906191000">
         <bundles name="org.eclipse.emf.common" versionRange="2.16.0"/>
         <bundles name="org.eclipse.emf.ecore" versionRange="2.18.0"/>
         <bundles name="org.eclipse.emf.ecore.change" versionRange="2.14.0"/>
@@ -47,7 +47,7 @@
       </repositories>
     </contributions>
     <contributions label="OCL 6.8.0">
-      <repositories location="https://download.eclipse.org/releases/2019-06/201906071000">
+      <repositories location="https://download.eclipse.org/releases/2019-06/201906191000">
         <bundles name="org.eclipse.ocl.common" versionRange="1.8.300"/>
         <bundles name="org.eclipse.ocl.pivot" versionRange="1.8.0"/>
         <bundles name="org.eclipse.ocl.xtext.base" versionRange="1.8.0"/>
@@ -69,7 +69,7 @@
         <bundles name="org.apache.log4j" versionRange="1.2.15"/>
       </repositories>
     </contributions>
-    <validationRepositories location="https://download.eclipse.org/releases/2019-06/201906071000"/>
+    <validationRepositories location="https://download.eclipse.org/releases/2019-06/201906191000"/>
     <validationRepositories location="https://download.eclipse.org/tools/orbit/downloads/drops/R20190602212107/repository"/>
   </validationSets>
   <configurations architecture="x86_64"/>
