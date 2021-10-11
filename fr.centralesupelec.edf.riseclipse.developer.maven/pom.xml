@@ -474,14 +474,19 @@
         <artifactId>tycho-maven-plugin</artifactId>
       </plugin>
 
+<!-- Do not use target platform for the momment, just use running Eclipse (2021-09) -->
+<!-- TODO: reconsidered this later -->
+<!--
       <plugin>
         <groupId>org.eclipse.tycho</groupId>
         <artifactId>target-platform-configuration</artifactId>
+-->
         <!-- see above, does not work either
         <configuration>
           <pomDependencies>consider</pomDependencies>
         </configuration>
         -->
+<!--
         <configuration>
           <target>
             <artifact>
@@ -492,6 +497,7 @@
           </target>
         </configuration>
       </plugin>
+-->
 
       <plugin>
         <groupId>org.eclipse.tycho</groupId>
