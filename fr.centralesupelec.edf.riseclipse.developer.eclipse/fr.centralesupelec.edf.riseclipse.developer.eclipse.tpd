@@ -1,7 +1,7 @@
 
 target "fr.centralesupelec.edf.riseclipse.developer.eclipse"
 
-environment JavaSE-1.8
+environment JavaSE-11
 
 location "http://download.eclipse.org/releases/2019-06" {
 	org.eclipse.core.commands
