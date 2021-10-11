@@ -53,20 +53,6 @@
     </repository>
   </repositories>
 
-  <distributionManagement>
-    <snapshotRepository>
-      <id>riseclipse-distribution-server</id>
-      <name>RiseClipse Snapshots</name>
-      <!-- This property is expected to be defined in settings.xml -->
-      <url>${riseclipse-distribution-server-snapshots-url}</url>
-    </snapshotRepository>
-    <repository>
-      <id>riseclipse-distribution-server</id>
-      <name>RiseClipse Releases</name>
-      <!-- This property is expected to be defined in settings.xml -->
-      <url>${riseclipse-distribution-server-releases-url}</url>
-    </repository>
-  </distributionManagement>
       
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
