@@ -47,7 +47,7 @@
   
   <modules>
     <module>fr.centralesupelec.edf.riseclipse.developer.maven</module>
-    <!--module>fr.centralesupelec.edf.riseclipse.developer.eclipse</module-->
+    <module>fr.centralesupelec.edf.riseclipse.developer.eclipse</module>
     <module>fr.centralesupelec.edf.riseclipse.developer.p2_to_m2</module>
   </modules>
 
