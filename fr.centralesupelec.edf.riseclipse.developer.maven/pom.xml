@@ -57,12 +57,15 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
+    <jdk.version>11</jdk.version>
+    <jdk.vendor>adpt</jdk.vendor>
     
     <tycho-version>2.5.0</tycho-version>
     
     <!--unleash-maven-plugin-version>2.9.3</unleash-maven-plugin-version-->
     <!--unleash-scm-provider-git-version>2.2.0</unleash-scm-provider-git-version-->
     
+    <maven-toolchain-plugin-version>3.0.0</maven-toolchain-plugin-version>
     <maven-shade-plugin-version>3.2.4</maven-shade-plugin-version>
 
     <!-- These version numbers are those used with an Eclipse build -->
@@ -355,6 +358,27 @@
     <pluginManagement>
       <plugins>
       
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-toolchains-plugin</artifactId>
+          <version>${maven-toolchain-plugin-version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>toolchain</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <toolchains>
+              <jdk>
+                <version>${jdk.version}</version>
+                <vendor>${jdk.vendor}</vendor>
+              </jdk>
+            </toolchains>
+          </configuration>
+        </plugin>
+
         <plugin>
           <!-- It is prefered over the standard release maven plugin -->
           <groupId>com.itemis.maven.plugins</groupId>
