@@ -60,7 +60,7 @@
       </repositories>
     </contributions>
     <contributions label="From Orbit">
-      <repositories location="https://download.eclipse.org/tools/orbit/downloads/drops/I20210923151929/repository">
+      <repositories location="https://download.eclipse.org/tools/orbit/downloads/drops/I20211122170238/repository">
         <bundles name="com.google.guava" versionRange="27.1.0"/>
         <bundles name="com.google.inject" versionRange="3.0.0"/>
         <bundles name="javax.inject" versionRange="1.0.0"/>
@@ -70,7 +70,7 @@
       </repositories>
     </contributions>
     <validationRepositories location="https://download.eclipse.org/releases/2021-09/202109151000/"/>
-    <validationRepositories location="https://download.eclipse.org/tools/orbit/downloads/drops/I20210923151929/repository"/>
+    <validationRepositories location="https://download.eclipse.org/tools/orbit/downloads/drops/I20211122170238/repository"/>
   </validationSets>
   <configurations architecture="x86_64"/>
   <configurations operatingSystem="linux" windowSystem="gtk" architecture="x86_64"/>
