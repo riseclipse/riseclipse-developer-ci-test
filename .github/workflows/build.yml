@@ -8,7 +8,8 @@ on:
 
 jobs:
   build_deploy:
-
+    env:
+      deploy-url: 
     runs-on: ubuntu-latest
 
     steps:
@@ -19,7 +20,7 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: maven
-    - name: Build with Maven
-      run: |
-        mvn clean package
-        mvn deploy
+    - name: Build
+      run: mvn clean package
+    - name: Deploy
+      run: mvn deploy -DaltDeploymentRepository=https://soaalex.jfrog.io/artifactory/default-maven-virtual
