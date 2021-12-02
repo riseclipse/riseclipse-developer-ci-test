@@ -21,5 +21,4 @@ jobs:
     - name: Build
       run: mvn clean package
     - name: Deploy
-      uses: jfrog/setup-jfrog-cli@v2
       run: mvn deploy
