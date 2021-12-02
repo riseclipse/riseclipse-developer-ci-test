@@ -8,8 +8,6 @@ on:
 
 jobs:
   build_deploy:
-    env:
-      deploy-url: 
     runs-on: ubuntu-latest
 
     steps:
@@ -23,4 +21,5 @@ jobs:
     - name: Build
       run: mvn clean package
     - name: Deploy
-      run: mvn deploy -DaltDeploymentRepository=https://soaalex.jfrog.io/artifactory/default-maven-virtual
+      uses: jfrog/setup-jfrog-cli@v2
+      run: mvn deploy
