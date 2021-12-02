@@ -57,19 +57,6 @@
   maven-central (EMF, OCL…). It enables maven build of fat jars which use such Eclipse plug-ins.
   </description>
 
-<distributionManagement>
-    <repository>
-        <id>central</id>
-        <name>a0jqfi5u0y5gb-artifactory-primary-0-releases</name>
-        <url>https://soaalex.jfrog.io/artifactory/default-maven-virtual</url>
-    </repository>
-    <snapshotRepository>
-        <id>snapshots</id>
-        <name>a0jqfi5u0y5gb-artifactory-primary-0-snapshots</name>
-        <url>https://soaalex.jfrog.io/artifactory/default-maven-virtual</url>
-    </snapshotRepository>
-</distributionManagement>
-
   <build>
     <plugins>
 
