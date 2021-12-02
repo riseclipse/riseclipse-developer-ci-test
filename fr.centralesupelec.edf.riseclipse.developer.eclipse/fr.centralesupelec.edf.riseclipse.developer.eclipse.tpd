@@ -22,7 +22,7 @@ location "http://download.eclipse.org/releases/2021-09" {
     org.eclipse.xtext.util
 }
 
-location "https://download.eclipse.org/tools/orbit/downloads/drops/I20211122170238/repository/" orbit-2021-09 {
+location "https://download.eclipse.org/tools/orbit/downloads/drops/R20210825222808/repository/" orbit-2021-09 {
     org.apache.commons.lang3
     com.google.guava
     com.google.inject
