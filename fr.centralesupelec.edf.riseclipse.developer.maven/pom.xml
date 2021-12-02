@@ -49,12 +49,12 @@
     <repository>
         <id>central</id>
         <name>a0jqfi5u0y5gb-artifactory-primary-0-releases</name>
-        <url>https://soaalex.jfrog.io/artifactory/default-maven-virtual</url>
+        <url>https://soaalex:eyJ2ZXIiOiIyIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYiLCJraWQiOiJqX3dsXzM5b0hfVHBjUU9KMEc2VVZvVU15bXlXNTEyNXhfaTZUWURyaXZ3In0.eyJleHQiOiJ7XCJyZXZvY2FibGVcIjpcInRydWVcIn0iLCJzdWIiOiJqZmFjQDAxZm50eDlmYnFhd20yMWVuNndxdHMwOWU5XC91c2Vyc1wvc29hYWxleCIsInNjcCI6ImFwcGxpZWQtcGVybWlzc2lvbnNcL2FkbWluIiwiYXVkIjoiKkAqIiwiaXNzIjoiamZmZUAwMDAiLCJleHAiOjE2Njk5OTMxMTcsImlhdCI6MTYzODQ1NzExNywianRpIjoiMjFkZTk3ZjktN2U0ZC00YmIwLWFmYzMtZjM4YTk0NDRmM2Q3In0.aXFvKQ8lK6Z4kNw5aZFyG0j0-_Znz0tii_Vjt_uYTQkE8Qj_BOvyLr84ADSbs0oZ9z1tr5p0I7Lnr5tse86GXnFHheOZ3IYPn7UZt5oXoCNFChcZZkk3aQ7ztgf14oAud0_rxkB9AAcru-MoAEkgGQANheOewRVUpkCzr-uKhZQYcxO6nqxkNtPIkqZsEevQW23xVrLuSbiAPCyt6LRBX2Vbze2LgQV75gJHeMTOrPBNG-6ymvhHrNxVtp4PdhcNXMXcc7Fql9L0nCck9ghBuCZHbLltyCPItMqB4flTlI1Gd59K4XDO5tEWMgnMwLu6oCQvYYf3A1GC6exasFgkCQ@soaalex.jfrog.io/artifactory/default-maven-virtual</url>
     </repository>
     <snapshotRepository>
         <id>snapshots</id>
         <name>a0jqfi5u0y5gb-artifactory-primary-0-snapshots</name>
-        <url>https://soaalex.jfrog.io/artifactory/default-maven-virtual</url>
+        <url>https://soaalex:eyJ2ZXIiOiIyIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYiLCJraWQiOiJqX3dsXzM5b0hfVHBjUU9KMEc2VVZvVU15bXlXNTEyNXhfaTZUWURyaXZ3In0.eyJleHQiOiJ7XCJyZXZvY2FibGVcIjpcInRydWVcIn0iLCJzdWIiOiJqZmFjQDAxZm50eDlmYnFhd20yMWVuNndxdHMwOWU5XC91c2Vyc1wvc29hYWxleCIsInNjcCI6ImFwcGxpZWQtcGVybWlzc2lvbnNcL2FkbWluIiwiYXVkIjoiKkAqIiwiaXNzIjoiamZmZUAwMDAiLCJleHAiOjE2Njk5OTMxMTcsImlhdCI6MTYzODQ1NzExNywianRpIjoiMjFkZTk3ZjktN2U0ZC00YmIwLWFmYzMtZjM4YTk0NDRmM2Q3In0.aXFvKQ8lK6Z4kNw5aZFyG0j0-_Znz0tii_Vjt_uYTQkE8Qj_BOvyLr84ADSbs0oZ9z1tr5p0I7Lnr5tse86GXnFHheOZ3IYPn7UZt5oXoCNFChcZZkk3aQ7ztgf14oAud0_rxkB9AAcru-MoAEkgGQANheOewRVUpkCzr-uKhZQYcxO6nqxkNtPIkqZsEevQW23xVrLuSbiAPCyt6LRBX2Vbze2LgQV75gJHeMTOrPBNG-6ymvhHrNxVtp4PdhcNXMXcc7Fql9L0nCck9ghBuCZHbLltyCPItMqB4flTlI1Gd59K4XDO5tEWMgnMwLu6oCQvYYf3A1GC6exasFgkCQ@soaalex.jfrog.io/artifactory/default-maven-virtual</url>
     </snapshotRepository>
   </distributionManagement>
 
