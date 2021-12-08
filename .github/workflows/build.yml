@@ -14,42 +14,49 @@ jobs:
     - name: Checkout riseclipse-metamodel-nsd2016
       uses: actions/checkout@v2
       with:
+        path: $GITHUB_WORKSPACE
         repository: RiseClipse/riseclipse-metamodel-nsd2016
         ref: use-up-to-date-components
 
     - name: Checkout riseclipse-validator-scl2003
       uses: actions/checkout@v2
       with:
+        path: $GITHUB_WORKSPACE
         repository: RiseClipse/riseclipse-validator-scl2003
         ref: Use-up-to-date-components
 
     - name: Checkout riseclipse-validator-ocl
       uses: actions/checkout@v2
       with:
+        path: $GITHUB_WORKSPACE
         repository: RiseClipse/riseclipse-validator-ocl
         ref: Use-up-to-date-components
 
     - name: Checkout riseclipse-metamodel-scl2003
       uses: actions/checkout@v2
       with:
+        path: $GITHUB_WORKSPACE
         repository: RiseClipse/riseclipse-metamodel-scl2003
         ref: use-up-to-date-components
 
     - name: Checkout riseclipse-editor
       uses: actions/checkout@v2
       with:
+        path: $GITHUB_WORKSPACE
         repository: RiseClipse/riseclipse-editor
         ref: Use-up-to-date-components
 
     - name: Checkout riseclipse-main
       uses: actions/checkout@v2
       with:
+        path: $GITHUB_WORKSPACE
         repository: RiseClipse/riseclipse-main
         ref: use-up-to-date-components
 
     - name: Checkout riseclipse-developer
       uses: actions/checkout@v2
       with:
+        path: $GITHUB_WORKSPACE
         ref: use-up-to-date-components
 
     - name: Set up JDK 11
