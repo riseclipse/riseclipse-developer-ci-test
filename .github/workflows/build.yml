@@ -18,13 +18,9 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: maven
-    - name: Build
+    - name: Clean
       run: mvn clean package
-    - name: Deploy
-      uses: actions/upload-artifact@v2
-      with:
-        name: RiseClipse-cli
-        path: ../riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar
+    - name: Build
       run: |
         cd ..
         git clone https://github.com/riseclipse/riseclipse-validator-scl2003.git
@@ -35,3 +31,8 @@ jobs:
         git clone https://github.com/riseclipse/riseclipse-editor.git
         cd riseclipse-developer/fr.centralesupelec.edf.riseclipse.developer.maven.validator.scl
         mvn install
+    - name: Publish
+      uses: actions/upload-artifact@v2
+        with:
+          name: RiseClipse-cli
+          path: ../riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar
