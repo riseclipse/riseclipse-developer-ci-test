@@ -49,7 +49,8 @@ jobs:
 
     - name: Checkout riseclipse-developer
       uses: actions/checkout@v2
-      ref: use-up-to-date-components
+      with:
+        ref: use-up-to-date-components
 
     - name: Set up JDK 11
       uses: actions/setup-java@v2
