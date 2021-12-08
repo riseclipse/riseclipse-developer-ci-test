@@ -95,12 +95,12 @@ jobs:
         name: RiseClipse-cli.jar
         path: ${{ github.workspace}}
 
-    - name: Checkout riseclipse-metamodel-scl2003
+    - name: Checkout riseclipse-validator-scl2003
       uses: actions/checkout@v2
       with:
-        path: riseclipse-metamodel-scl2003
-        repository: RiseClipse/riseclipse-metamodel-scl2003
-        ref: use-up-to-date-components
+        path: riseclipse-validator-scl2003
+        repository: RiseClipse/riseclipse-validator-scl2003
+        ref: test-scripts
 
     - name: Run tests 
       run: |
