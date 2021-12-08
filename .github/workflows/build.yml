@@ -1,13 +1,15 @@
-name: Java CI with Maven
+name: Build RiseClipse (reusable)
 
 on:
-  push:
-    branches: [ dev-ci ]
-  pull_request:
-    branches: [ $default-branch ]
+  workflow_call:
+    inputs:
+      artifact_base_name:
+        required: true
+        type: string
+
 
 jobs:
-  build_deploy:
+  v1:
     runs-on: ubuntu-latest
 
     steps: 
@@ -57,7 +59,6 @@ jobs:
       uses: actions/checkout@v2
       with:
         path: riseclipse-developer
-        ref: dev-ci
 
     - name: Set up JDK 11
       uses: actions/setup-java@v2
@@ -66,39 +67,20 @@ jobs:
         distribution: 'adopt'
         cache: maven
 
-    # - name: Clean
-    #   run: mvn clean package
-
     - name: Build
       run: |
         cd riseclipse-developer
         cd fr.centralesupelec.edf.riseclipse.developer.maven.validator.scl
         mvn install
 
-    - name: Publish
+    - name: Upload cli jar
       uses: actions/upload-artifact@v2
       with:
-        name: RiseClipse-cli
+        name: ${{ inputs.artifact_base_name }}-cli
         path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload gui jar
+      uses: actions/upload-artifact@v2
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
-
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar
-        asset_name: RiseClipse-cli.jar
-        asset_content_type: application/jar
+        name: ${{ inputs.artifact_base_name }}-gui
+        path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator.ui/target/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar

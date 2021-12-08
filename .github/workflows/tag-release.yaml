@@ -1,0 +1,16 @@
+name: Build and release RiseClipse
+
+on:
+  push: [tags]
+
+
+jobs:
+  build:
+    uses: riseclipse/riseclipse-developer/.github/workflows/build@v1
+    with:
+      artifact_base_name: RiseClipse
+
+  release:
+    uses: riseclipse/riseclipse-developer/.github/workflows/release@v1
+    with:
+      artifact_base_name: RiseClipse
