@@ -59,8 +59,8 @@ jobs:
         distribution: 'adopt'
         cache: maven
 
-    - name: Clean
-      run: mvn clean package
+    # - name: Clean
+    #   run: mvn clean package
 
     - name: Build
       run: |
