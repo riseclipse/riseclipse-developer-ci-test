@@ -1,12 +1,23 @@
-name: Build
+name: Run Tests
 
-on: [push, pull_request]
+on:
+  workflow_run:
+    workflows: ["Build"]
+    types: 
+      - completed
 
 jobs:
-  build:
+  run_test:
     runs-on: ubuntu-latest
 
     steps: 
+    - name: Download artifact .jar
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        workflow: build.yml
+        workflow_conclusion: success
+        path: ${{ github.workspace }}
+
     - name: Checkout riseclipse-metamodel-nsd2016
       uses: actions/checkout@v2
       with:
@@ -61,18 +72,4 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: maven
-
-    # - name: Clean
-    #   run: mvn clean package
-
-    - name: Build with Maven 
-      run: |
-        cd riseclipse-developer
-        cd fr.centralesupelec.edf.riseclipse.developer.maven.validator.scl
-        mvn install
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: RiseClipse-cli
-        path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar
+    
