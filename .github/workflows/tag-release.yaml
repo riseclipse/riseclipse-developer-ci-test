@@ -8,11 +8,11 @@ on:
 
 jobs:
   build:
-    uses: riseclipse/riseclipse-developer/.github/workflows/build.yml@v1
+    uses: riseclipse/riseclipse-developer/.github/workflows/build.yml@ci-with-reusable-workflows
     with:
       artifact_base_name: RiseClipse
 
   release:
-    uses: riseclipse/riseclipse-developer/.github/workflows/release.yml@v1
+    uses: riseclipse/riseclipse-developer/.github/workflows/release.yml@ci-with-reusable-workflows
     with:
       artifact_base_name: RiseClipse
