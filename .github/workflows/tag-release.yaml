@@ -14,5 +14,6 @@ jobs:
 
   release:
     uses: riseclipse/riseclipse-developer/.github/workflows/release.yml@ci-with-reusable-workflows
+    needs: build
     with:
       artifact_base_name: RiseClipse
