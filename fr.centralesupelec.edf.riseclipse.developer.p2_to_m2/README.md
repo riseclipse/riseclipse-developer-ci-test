@@ -20,3 +20,8 @@ aurelie.dehouck-neveu@edf.fr
 ### Web site
 
 https://riseclipse.github.io
+
+
+### Aggregation file edition
+
+To edit the `riseclipse.aggr` file, please use the CBI/aggregator tool (https://wiki.eclipse.org/CBI/aggregator).
