@@ -93,7 +93,7 @@ jobs:
       uses: actions/download-artifact@master
       with:
         name: RiseClipse-cli.jar
-        path: ${{ github.workspace}}
+        path: ${{ github.workspace }}
 
     - name: Set up JDK 11
       uses: actions/setup-java@v2
@@ -105,6 +105,8 @@ jobs:
     - name: Run tests 
       run: |
         cd riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/test   
+        echo ${{ github.workspace }}
+        ls ${{ github.workspace }}
         ./run_tests.sh ${{ github.workspace }}/RiseClipse-cli.jar
 
   deploy:
