@@ -1,7 +1,9 @@
 name: Build and release RiseClipse
 
 on:
-  push: [tags]
+  push:
+    tags:
+      - '*'
 
 
 jobs:
