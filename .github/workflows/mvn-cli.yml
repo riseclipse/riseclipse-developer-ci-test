@@ -76,3 +76,61 @@ jobs:
       with:
         name: RiseClipse-cli
         path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar
+
+  run_test:
+    runs-on: ubuntu-latest
+
+    steps: 
+    - name: Download artifact .jar
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        workflow: build.yml
+        workflow_conclusion: success
+        path: ${{ github.workspace }}
+
+    - name: Checkout riseclipse-metamodel-scl2003
+      uses: actions/checkout@v2
+      with:
+        path: riseclipse-metamodel-scl2003
+        repository: RiseClipse/riseclipse-metamodel-scl2003
+        ref: use-up-to-date-components
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        cache: maven
+
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    steps: 
+    - name: Download artifact .jar
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        workflow: build.yml
+        workflow_conclusion: success
+        path: ${{ github.workspace }}
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{github.ref_name}}
+        release_name: Release ${{github.ref_name}}
+        draft: true
+        prerelease: false
+
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ${{ github.workspace }}/RiseClipse-cli.jar
+        asset_name: RiseClipse-cli.jar
+        asset_content_type: application/jar
