@@ -80,4 +80,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: RiseClipse-cli
-        path: ../riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar
+        path: $GITHUB_WORKSPACE/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar
