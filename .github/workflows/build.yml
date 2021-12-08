@@ -14,37 +14,37 @@ jobs:
     - name: Checkout riseclipse-metamodel-nsd2016
       uses: actions/checkout@v2
       with:
-        repository: riseclipse-metamodel-nsd2016
+        repository: RiseClipse/riseclipse-metamodel-nsd2016
         ref: use-up-to-date-components
 
     - name: Checkout riseclipse-validator-scl2003
       uses: actions/checkout@v2
       with:
-        repository: riseclipse-validator-scl2003
+        repository: RiseClipse/riseclipse-validator-scl2003
         ref: Use-up-to-date-components
 
     - name: Checkout riseclipse-validator-ocl
       uses: actions/checkout@v2
       with:
-        repository: riseclipse-validator-ocl
+        repository: RiseClipse/riseclipse-validator-ocl
         ref: Use-up-to-date-components
 
     - name: Checkout riseclipse-metamodel-scl2003
       uses: actions/checkout@v2
       with:
-        repository: riseclipse-metamodel-scl2003
+        repository: RiseClipse/riseclipse-metamodel-scl2003
         ref: use-up-to-date-components
 
     - name: Checkout riseclipse-editor
       uses: actions/checkout@v2
       with:
-        repository: riseclipse-editor
+        repository: RiseClipse/riseclipse-editor
         ref: Use-up-to-date-components
 
     - name: Checkout riseclipse-main
       uses: actions/checkout@v2
       with:
-        repository: riseclipse-main
+        repository: RiseClipse/riseclipse-main
         ref: use-up-to-date-components
 
     - name: Checkout riseclipse-developer
