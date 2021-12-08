@@ -107,7 +107,7 @@ jobs:
         cd riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/test   
         echo ${{ github.workspace }}
         ls ${{ github.workspace }}
-        ./run_tests.sh ${{ github.workspace }}/RiseClipse-cli.jar
+        ./run_tests.sh ${{ github.workspace }}/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar
 
   deploy:
     runs-on: ubuntu-latest
