@@ -1,25 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 
-*************************************************************************
-**  Copyright (c) 2021 CentraleSupélec & EDF.
-**  All rights reserved. This program and the accompanying materials
-**  are made available under the terms of the Eclipse Public License v2.0
-**  which accompanies this distribution, and is available at
-**  https://www.eclipse.org/legal/epl-v20.html
-** 
-**  This file is part of the RiseClipse tool
-**  
-**  Contributors:
-**      Computer Science Department, CentraleSupélec
-**      EDF R&D
-**  Contacts:
-**      dominique.marcadet@centralesupelec.fr
-**      aurelie.dehouck-neveu@edf.fr
-**  Web site:
-**      https://riseclipse.github.io
-*************************************************************************
--->
-
 <aggregator:Aggregation xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:aggregator="http://www.eclipse.org/cbi/p2repo/2011/aggregator/1.1.0" label="Eclipse Projects for RiseClipse" packedStrategy="UNPACK" mavenResult="true" versionFormat="MavenRelease">
   <validationSets label="Eclipse needed projects for RiseClipse">
     <contributions label="Eclipse Platform 2021-09">
@@ -60,7 +39,7 @@
       </repositories>
     </contributions>
     <contributions label="From Orbit">
-      <repositories location="https://download.eclipse.org/tools/orbit/downloads/drops/I20210923151929/repository">
+      <repositories location="https://download.eclipse.org/tools/orbit/downloads/drops/R20210825222808/repository">
         <bundles name="com.google.guava" versionRange="27.1.0"/>
         <bundles name="com.google.inject" versionRange="3.0.0"/>
         <bundles name="javax.inject" versionRange="1.0.0"/>
@@ -70,7 +49,7 @@
       </repositories>
     </contributions>
     <validationRepositories location="https://download.eclipse.org/releases/2021-09/202109151000/"/>
-    <validationRepositories location="https://download.eclipse.org/tools/orbit/downloads/drops/I20210923151929/repository"/>
+    <validationRepositories location="https://download.eclipse.org/tools/orbit/downloads/drops/R20210825222808/repository"/>
   </validationSets>
   <configurations architecture="x86_64"/>
   <configurations operatingSystem="linux" windowSystem="gtk" architecture="x86_64"/>
