@@ -90,11 +90,10 @@ jobs:
         cache: maven
 
     - name: Download artifact .jar
-      uses: dawidd6/action-download-artifact@v2
-      with:
-        workflow: build.yml
-        workflow_conclusion: success
-        path: ${{ github.workspace }}
+      uses: actions/download-artifact@master
+        with:
+          name: RiseClipse-cli.jar
+          path: ${{ github.workspace}}
 
     - name: Checkout riseclipse-metamodel-scl2003
       uses: actions/checkout@v2
