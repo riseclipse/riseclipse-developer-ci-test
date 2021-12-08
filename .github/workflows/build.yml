@@ -64,7 +64,7 @@ jobs:
 
     - name: Build
       run: |
-        cd ..
+        cd ../..
         ls
         cd riseclipse-developer
         cd fr.centralesupelec.edf.riseclipse.developer.maven.validator.scl
