@@ -91,9 +91,9 @@ jobs:
 
     - name: Download artifact .jar
       uses: actions/download-artifact@master
-        with:
-          name: RiseClipse-cli.jar
-          path: ${{ github.workspace}}
+      with:
+        name: RiseClipse-cli.jar
+        path: ${{ github.workspace}}
 
     - name: Checkout riseclipse-metamodel-scl2003
       uses: actions/checkout@v2
