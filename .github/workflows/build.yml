@@ -71,17 +71,34 @@ jobs:
 
     - name: Build
       run: |
-        ls $GITHUB_WORKSPACE
-        ls
         cd riseclipse-developer
         cd fr.centralesupelec.edf.riseclipse.developer.maven.validator.scl
         mvn install
-        cd ../..
-        cd riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target
-        ls
 
     - name: Publish
       uses: actions/upload-artifact@v2
       with:
         name: RiseClipse-cli
         path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          asset_path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar
+          asset_name: RiseClipse-cli.jar
+          asset_content_type: application/jar
