@@ -34,7 +34,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        upload_url: ${{ steps.create-release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
         asset_path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar
         asset_name: RiseClipse-cli.jar
         asset_content_type: application/jar
@@ -45,7 +45,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        upload_url: ${{ steps.create-release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
         asset_path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator.ui/target/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar
         asset_name: RiseClipse-gui.jar
         asset_content_type: application/jar
