@@ -74,7 +74,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: RiseClipse-cli
+        name: RiseClipse-cli.jar
         path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar
 
   test:
