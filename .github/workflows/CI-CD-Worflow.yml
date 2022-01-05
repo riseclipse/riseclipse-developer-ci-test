@@ -104,6 +104,12 @@ jobs:
         name: RiseClipse-Validator-NSD-CLI.jar
         path: ${{ github.workspace }}/RiseClipse-Validator-NSD-CLI.jar
 
+    - name: Upload artifact zipped
+      uses: actions/upload-artifact@v2
+      with:
+        name: RiseClipse.zip
+        path: ${{ github.workspace }}/RiseClipse.zip
+
   test:
     runs-on: ubuntu-latest
     needs: [build]
@@ -140,7 +146,7 @@ jobs:
   publish_release:
     needs: [build, test]
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    # if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     steps: 
     - name: Download artifact .jar
       uses: dawidd6/action-download-artifact@v2
@@ -174,7 +180,7 @@ jobs:
   publish_dockerhub:
     runs-on: ubuntu-latest
     needs: [build, test]
-    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    # if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     steps: 
     - name: Download artifact .jar
       uses: dawidd6/action-download-artifact@v2
@@ -196,28 +202,6 @@ jobs:
       with:
         images: alsoares59/riseclipse
     
-    # Get Dockerfiles
-    - name: Checkout riseclipse-metamodel-nsd2016
-      uses: actions/checkout@v2
-      with:
-        path: riseclipse-metamodel-nsd2016
-        repository: RiseClipse/riseclipse-metamodel-nsd2016
-        ref: dev-ci
-
-    - name: Checkout riseclipse-validator-scl2003
-      uses: actions/checkout@v2
-      with:
-        path: riseclipse-validator-scl2003
-        repository: RiseClipse/riseclipse-validator-scl2003
-        ref: dev-ci
-
-    - name: Checkout riseclipse-validator-ocl
-      uses: actions/checkout@v2
-      with:
-        path: riseclipse-validator-ocl
-        repository: RiseClipse/riseclipse-validator-ocl
-        ref: dev-ci
-
     # Build and push images for each validator
     - name: Build and push Docker image Validator SCL CLI
       uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
