@@ -152,7 +152,7 @@ jobs:
     - name: Download artifacts
       uses: dawidd6/action-download-artifact@v2
       with:
-        workflow: CI-C-Workflow.yml
+        workflow: CI-CD-Workflow.yml
         workflow_conclusion: success
         path: ${{ github.workspace }}
 
@@ -186,7 +186,7 @@ jobs:
     - name: Download artifact .jar
       uses: dawidd6/action-download-artifact@v2
       with:
-        workflow: CI-C-Workflow.yml
+        workflow: CI-CD-Workflow.yml
         workflow_conclusion: success
         path: ${{ github.workspace }}
 
