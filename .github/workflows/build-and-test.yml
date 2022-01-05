@@ -78,22 +78,22 @@ jobs:
         path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-*.jar
 
     - name: Upload artifact Validator SCL UI
-        uses: actions/upload-artifact@v2
-        with:
-          name: RiseClipse-Validator-SCL-UI.jar
-          path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator.ui/target/RiseClipseValidatorSCLApplication-*.jar
+      uses: actions/upload-artifact@v2
+      with:
+        name: RiseClipse-Validator-SCL-UI.jar
+        path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator.ui/target/RiseClipseValidatorSCLApplication-*.jar
 
     - name: Upload artifact Validator OCL CLI
-        uses: actions/upload-artifact@v2
-        with:
-          name: RiseClipse-Validator-OCL-CLI.jar
-          path: ${{ github.workspace }}/riseclipse-validator-ocl/fr.centralesupelec.edf.riseclipse.validation.ocl/target/fr.centralesupelec.edf.riseclipse.validation.ocl-*.jar
+      uses: actions/upload-artifact@v2
+      with:
+        name: RiseClipse-Validator-OCL-CLI.jar
+        path: ${{ github.workspace }}/riseclipse-validator-ocl/fr.centralesupelec.edf.riseclipse.validation.ocl/target/fr.centralesupelec.edf.riseclipse.validation.ocl-*.jar
 
     - name: Upload artifact Validator NSD CLI
-        uses: actions/upload-artifact@v2
-        with:
-          name: RiseClipse-Validator-NSD-CLI.jar
-          path: ${{ github.workspace }}/riseclipse-metamodel-nsd2016/fr.centralesupelec.edf.riseclipse.iec61850.nsd/target/fr.centralesupelec.edf.riseclipse.iec61850.nsd-*.jar
+      uses: actions/upload-artifact@v2
+      with:
+        name: RiseClipse-Validator-NSD-CLI.jar
+        path: ${{ github.workspace }}/riseclipse-metamodel-nsd2016/fr.centralesupelec.edf.riseclipse.iec61850.nsd/target/fr.centralesupelec.edf.riseclipse.iec61850.nsd-*.jar
 
   test:
     runs-on: ubuntu-latest
