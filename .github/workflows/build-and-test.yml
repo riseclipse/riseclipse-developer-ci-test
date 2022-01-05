@@ -122,7 +122,7 @@ jobs:
 
     - name: Run tests 
       run: |
-        cd riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/test   
+        cd riseclipse-validator-scl2003/test   
         echo ${{ github.workspace }}
         ls ${{ github.workspace }}
         ./run_tests.sh ${{ github.workspace }}/RiseClipse-Validator-SCL-CLI.jar
