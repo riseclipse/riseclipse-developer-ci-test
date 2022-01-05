@@ -79,6 +79,7 @@ jobs:
         mv ${{ github.workspace }}/riseclipse-validator-ocl/fr.centralesupelec.edf.riseclipse.validation.ocl/target/fr.centralesupelec.edf.riseclipse.validation.ocl-1.1.0-SNAPSHOT.jar ${{ github.workspace }}/RiseClipse-Validator-OCL-CLI.jar
         mv ${{ github.workspace }}/riseclipse-metamodel-nsd2016/fr.centralesupelec.edf.riseclipse.iec61850.nsd/target/fr.centralesupelec.edf.riseclipse.iec61850.nsd-1.1.0-SNAPSHOT.jar ${{ github.workspace }}/RiseClipse-Validator-NSD-CLI.jar
         zip ${{ github.workspace }}/RiseClipse.zip RiseClipse-Validator-SCL-CLI.jar RiseClipse-Validator-SCL-UI.jar RiseClipse-Validator-OCL-CLI.jar RiseClipse-Validator-NSD-CLI.jar
+        ls ${{ github.workspace }}
 
     - name: Upload artifact Validator SCL CLI
       uses: actions/upload-artifact@v2
@@ -148,10 +149,10 @@ jobs:
     runs-on: ubuntu-latest
     # if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     steps: 
-    - name: Download artifact .jar
+    - name: Download artifacts
       uses: dawidd6/action-download-artifact@v2
       with:
-        workflow: build-and-test.yml
+        workflow: CI-C-Workflow.yml
         workflow_conclusion: success
         path: ${{ github.workspace }}
 
@@ -185,7 +186,7 @@ jobs:
     - name: Download artifact .jar
       uses: dawidd6/action-download-artifact@v2
       with:
-        workflow: build-and-test.yml
+        workflow: CI-C-Workflow.yml
         workflow_conclusion: success
         path: ${{ github.workspace }}
 
@@ -201,7 +202,29 @@ jobs:
       uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
       with:
         images: alsoares59/riseclipse
+
+  # Get Dockerfiles from checkout
+   - name: Checkout riseclipse-validator-scl2003
+      uses: actions/checkout@v2
+      with:
+        path: riseclipse-validator-scl2003
+        repository: RiseClipse/riseclipse-validator-scl2003
+        ref: dev-ci
+  
+   - name: Checkout riseclipse-validator-ocl
+      uses: actions/checkout@v2
+      with:
+        path: riseclipse-validator-ocl
+        repository: RiseClipse/riseclipse-validator-ocl
+        ref: test-scripts
     
+ - name: Checkout riseclipse-metamodel-nsd2003
+      uses: actions/checkout@v2
+      with:
+        path: riseclipse-metamodel-nsd2003
+        repository: RiseClipse/riseclipse-metamodel-nsd2003
+        ref: test-scripts
+
     # Build and push images for each validator
     - name: Build and push Docker image Validator SCL CLI
       uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
