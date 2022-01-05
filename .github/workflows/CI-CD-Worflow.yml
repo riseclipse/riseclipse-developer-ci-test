@@ -149,13 +149,6 @@ jobs:
     runs-on: ubuntu-latest
     # if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     steps: 
-    - name: Download artifacts
-      uses: dawidd6/action-download-artifact@v2
-      with:
-        workflow: CI-CD-Workflow.yml
-        workflow_conclusion: success
-        path: ${{ github.workspace }}
-
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -183,13 +176,6 @@ jobs:
     needs: [build, test]
     # if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     steps: 
-    - name: Download artifact .jar
-      uses: dawidd6/action-download-artifact@v2
-      with:
-        workflow: CI-CD-Workflow.yml
-        workflow_conclusion: success
-        path: ${{ github.workspace }}
-
     # Login to Docker Hub
     - name: Log in to Docker Hub
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
