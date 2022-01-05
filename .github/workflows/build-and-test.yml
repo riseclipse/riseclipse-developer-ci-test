@@ -71,29 +71,36 @@ jobs:
         cd fr.centralesupelec.edf.riseclipse.developer.maven.validator.scl
         mvn install
 
+    - name: Run tests 
+      run: |
+        mv ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-*.jar ${{ github.workspace }}/RiseClipse-Validator-SCL-CLI.jar
+        mv ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCLApplication-*.jar ${{ github.workspace }}/RiseClipse-Validator-SCL-UI.jar
+        mv ${{ github.workspace }}/riseclipse-validator-ocl/fr.centralesupelec.edf.riseclipse.validation.ocl/target/fr.centralesupelec.edf.riseclipse.validation.ocl-*.jar ${{ github.workspace }}/RiseClipse-Validator-OCL-CLI.jar
+        mv ${{ github.workspace }}/riseclipse-metamodel-nsd2016/fr.centralesupelec.edf.riseclipse.iec61850.nsd/target/fr.centralesupelec.edf.riseclipse.iec61850.nsd-*.jar ${{ github.workspace }}/RiseClipse-Validator-NSD-CLI.jar
+
     - name: Upload artifact Validator SCL CLI
       uses: actions/upload-artifact@v2
       with:
         name: RiseClipse-Validator-SCL-CLI.jar
-        path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-*.jar
+        path: ${{ github.workspace }}/RiseClipse-Validator-SCL-CLI.jar
 
     - name: Upload artifact Validator SCL UI
       uses: actions/upload-artifact@v2
       with:
         name: RiseClipse-Validator-SCL-UI.jar
-        path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator.ui/target/RiseClipseValidatorSCLApplication-*.jar
+        path: ${{ github.workspace }}/RiseClipse-Validator-SCL-UI.jar
 
     - name: Upload artifact Validator OCL CLI
       uses: actions/upload-artifact@v2
       with:
         name: RiseClipse-Validator-OCL-CLI.jar
-        path: ${{ github.workspace }}/riseclipse-validator-ocl/fr.centralesupelec.edf.riseclipse.validation.ocl/target/fr.centralesupelec.edf.riseclipse.validation.ocl-*.jar
+        path: ${{ github.workspace }}/RiseClipse-Validator-OCL-CLI.jar
 
     - name: Upload artifact Validator NSD CLI
       uses: actions/upload-artifact@v2
       with:
         name: RiseClipse-Validator-NSD-CLI.jar
-        path: ${{ github.workspace }}/riseclipse-metamodel-nsd2016/fr.centralesupelec.edf.riseclipse.iec61850.nsd/target/fr.centralesupelec.edf.riseclipse.iec61850.nsd-*.jar
+        path: ${{ github.workspace }}/RiseClipse-Validator-NSD-CLI.jar
 
   test:
     runs-on: ubuntu-latest
