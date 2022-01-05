@@ -203,22 +203,22 @@ jobs:
       with:
         images: alsoares59/riseclipse
 
-  # Get Dockerfiles from checkout
-   - name: Checkout riseclipse-validator-scl2003
+    # Get Dockerfiles from checkout
+    - name: Checkout riseclipse-validator-scl2003
       uses: actions/checkout@v2
       with:
         path: riseclipse-validator-scl2003
         repository: RiseClipse/riseclipse-validator-scl2003
         ref: dev-ci
-  
-   - name: Checkout riseclipse-validator-ocl
+
+    - name: Checkout riseclipse-validator-ocl
       uses: actions/checkout@v2
       with:
         path: riseclipse-validator-ocl
         repository: RiseClipse/riseclipse-validator-ocl
         ref: test-scripts
     
- - name: Checkout riseclipse-metamodel-nsd2003
+    - name: Checkout riseclipse-metamodel-nsd2003
       uses: actions/checkout@v2
       with:
         path: riseclipse-metamodel-nsd2003
