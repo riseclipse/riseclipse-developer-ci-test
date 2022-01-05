@@ -40,14 +40,14 @@ jobs:
       with:
         path: riseclipse-editor
         repository: RiseClipse/riseclipse-editor
-        ref: dev-ci
+        ref: use-up-to-date-components
 
     - name: Checkout riseclipse-main
       uses: actions/checkout@v2
       with:
         path: riseclipse-main
         repository: RiseClipse/riseclipse-main
-        ref: dev-ci
+        ref: use-up-to-date-components
 
     - name: Checkout riseclipse-developer
       uses: actions/checkout@v2
