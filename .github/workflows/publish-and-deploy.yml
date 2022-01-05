@@ -1,0 +1,146 @@
+name: Release
+
+# TODO: Currently for testing, this workflow runs when CI part is done. Usually, it should only run on merges
+on:
+  workflow_run:
+    workflows: ["CI Build and Test"]
+    types:
+      - completed
+
+jobs:
+  publish_release:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    steps: 
+    - name: Download artifact .jar
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        workflow: build-and-test.yml
+        workflow_conclusion: success
+        path: ${{ github.workspace }}
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{github.ref_name}}
+        release_name: Release ${{github.ref_name}}
+        draft: true
+        prerelease: false
+
+    - name: Upload Release Validator SCL
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ${{ github.workspace }}/RiseClipse-Validator-SCL-CLI.jar
+        asset_name: RiseClipse-Validator-SCL-CLI.jar
+        asset_content_type: application/jar
+
+    - name: Upload Release Validator SCL UI
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} 
+        asset_path: ${{ github.workspace }}/RiseClipse-Validator-SCL-UI.jar
+        asset_name: RiseClipse-Validator-SCL-CLI.jar
+        asset_content_type: application/jar
+
+    - name: Upload Release Validator OCL CLI
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} 
+        asset_path: ${{ github.workspace }}/RiseClipse-Validator-OCL-CLI.jar
+        asset_name: RiseClipse-Validator-OCL-CLI.jar
+        asset_content_type: application/jar
+
+    - name: Upload Release Validator NSD CLI
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} 
+        asset_path: ${{ github.workspace }}/RiseClipse-Validator-NSD-CLI.jar
+        asset_name: RiseClipse-Validator-NSD-CLI.jar
+        asset_content_type: application/jar
+
+  publish_dockerhub:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+    steps: 
+    - name: Download artifact .jar
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        workflow: build-and-test.yml
+        workflow_conclusion: success
+        path: ${{ github.workspace }}
+
+    # Login to Docker Hub
+    - name: Log in to Docker Hub
+      uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+      with:
+        images: my-docker-hub-namespace/my-docker-hub-repository
+    
+    # Get Dockerfiles
+    - name: Checkout riseclipse-metamodel-nsd2016
+      uses: actions/checkout@v2
+      with:
+        path: riseclipse-metamodel-nsd2016
+        repository: RiseClipse/riseclipse-metamodel-nsd2016
+        ref: dev-ci
+
+    - name: Checkout riseclipse-validator-scl2003
+      uses: actions/checkout@v2
+      with:
+        path: riseclipse-validator-scl2003
+        repository: RiseClipse/riseclipse-validator-scl2003
+        ref: dev-ci
+
+    - name: Checkout riseclipse-validator-ocl
+      uses: actions/checkout@v2
+      with:
+        path: riseclipse-validator-ocl
+        repository: RiseClipse/riseclipse-validator-ocl
+        ref: dev-ci
+
+    # Build and push images for each validator
+    - name: Build and push Docker image Validator SCL CLI
+      uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+      with:
+        context: ${{ github.workspace }}/riseclipse-validator-scl2003
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+
+    - name: Build and push Docker image Validator OCL CLI
+      uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+      with:
+        context: ${{ github.workspace }}/riseclipse-validator-ocl
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+
+    - name: Build and push Docker image Validator NSD CLI
+      uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+      with:
+        context: ${{ github.workspace }}/riseclipse-validator-nsd2003
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}

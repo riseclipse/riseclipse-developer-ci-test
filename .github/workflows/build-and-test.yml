@@ -1,4 +1,4 @@
-name: Build, Test and deploy
+name: CI Build and Test
 
 on: [push, pull_request]
 
@@ -12,42 +12,42 @@ jobs:
       with:
         path: riseclipse-metamodel-nsd2016
         repository: RiseClipse/riseclipse-metamodel-nsd2016
-        ref: use-up-to-date-components
+        ref: dev-ci
 
     - name: Checkout riseclipse-validator-scl2003
       uses: actions/checkout@v2
       with:
         path: riseclipse-validator-scl2003
         repository: RiseClipse/riseclipse-validator-scl2003
-        ref: Use-up-to-date-components
+        ref: dev-ci
 
     - name: Checkout riseclipse-validator-ocl
       uses: actions/checkout@v2
       with:
         path: riseclipse-validator-ocl
         repository: RiseClipse/riseclipse-validator-ocl
-        ref: Use-up-to-date-components
+        ref: dev-ci
 
     - name: Checkout riseclipse-metamodel-scl2003
       uses: actions/checkout@v2
       with:
         path: riseclipse-metamodel-scl2003
         repository: RiseClipse/riseclipse-metamodel-scl2003
-        ref: use-up-to-date-components
+        ref: dev-ci
 
     - name: Checkout riseclipse-editor
       uses: actions/checkout@v2
       with:
         path: riseclipse-editor
         repository: RiseClipse/riseclipse-editor
-        ref: Use-up-to-date-components
+        ref: dev-ci
 
     - name: Checkout riseclipse-main
       uses: actions/checkout@v2
       with:
         path: riseclipse-main
         repository: RiseClipse/riseclipse-main
-        ref: use-up-to-date-components
+        ref: dev-ci
 
     - name: Checkout riseclipse-developer
       uses: actions/checkout@v2
@@ -71,11 +71,29 @@ jobs:
         cd fr.centralesupelec.edf.riseclipse.developer.maven.validator.scl
         mvn install
 
-    - name: Upload artifact
+    - name: Upload artifact Validator SCL CLI
       uses: actions/upload-artifact@v2
       with:
-        name: RiseClipse-cli.jar
-        path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar
+        name: RiseClipse-Validator-SCL-CLI.jar
+        path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-*.jar
+
+    - name: Upload artifact Validator SCL UI
+        uses: actions/upload-artifact@v2
+        with:
+          name: RiseClipse-Validator-SCL-UI.jar
+          path: ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator.ui/target/RiseClipseValidatorSCLApplication-*.jar
+
+    - name: Upload artifact Validator OCL CLI
+        uses: actions/upload-artifact@v2
+        with:
+          name: RiseClipse-Validator-OCL-CLI.jar
+          path: ${{ github.workspace }}/riseclipse-validator-ocl/fr.centralesupelec.edf.riseclipse.validation.ocl/target/fr.centralesupelec.edf.riseclipse.validation.ocl-*.jar
+
+    - name: Upload artifact Validator NSD CLI
+        uses: actions/upload-artifact@v2
+        with:
+          name: RiseClipse-Validator-NSD-CLI.jar
+          path: ${{ github.workspace }}/riseclipse-metamodel-nsd2016/fr.centralesupelec.edf.riseclipse.iec61850.nsd/target/fr.centralesupelec.edf.riseclipse.iec61850.nsd-*.jar
 
   test:
     runs-on: ubuntu-latest
@@ -92,7 +110,7 @@ jobs:
     - name: Download artifact .jar
       uses: actions/download-artifact@master
       with:
-        name: RiseClipse-cli.jar
+        name: RiseClipse-Validator-SCL-CLI.jar
         path: ${{ github.workspace }}
 
     - name: Set up JDK 11
@@ -107,38 +125,4 @@ jobs:
         cd riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/test   
         echo ${{ github.workspace }}
         ls ${{ github.workspace }}
-        ./run_tests.sh ${{ github.workspace }}/RiseClipseValidatorSCL-1.1.0-SNAPSHOT.jar
-
-  deploy:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
-    needs: [build, test]
-    steps: 
-    - name: Download artifact .jar
-      uses: dawidd6/action-download-artifact@v2
-      with:
-        workflow: build.yml
-        workflow_conclusion: success
-        path: ${{ github.workspace }}
-
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{github.ref_name}}
-        release_name: Release ${{github.ref_name}}
-        draft: true
-        prerelease: false
-
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ${{ github.workspace }}/RiseClipse-cli.jar
-        asset_name: RiseClipse-cli.jar
-        asset_content_type: application/jar
+        ./run_tests.sh ${{ github.workspace }}/RiseClipse-Validator-SCL-CLI.jar
