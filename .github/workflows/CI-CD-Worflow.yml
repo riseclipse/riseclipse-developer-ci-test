@@ -210,11 +210,11 @@ jobs:
         repository: RiseClipse/riseclipse-validator-ocl
         ref: dev-ci
     
-    - name: Checkout riseclipse-metamodel-nsd2003
+    - name: Checkout riseclipse-metamodel-nsd2016
       uses: actions/checkout@v2
       with:
         path: riseclipse-metamodel-nsd2003
-        repository: RiseClipse/riseclipse-metamodel-nsd2003
+        repository: RiseClipse/riseclipse-metamodel-nsd2016
         ref: dev-ci
 
     # Build and push images for each validator
