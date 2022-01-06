@@ -233,25 +233,28 @@ jobs:
 
     # Build and push images for each validator
     - name: Build and push Docker image Validator SCL CLI
-      uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+      uses: docker/build-push-action@v2
       with:
         context: ${{ github.workspace }}/riseclipse-validator-scl2003
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
+        build-args: GH_WS=${{ github.workspace }}
 
     - name: Build and push Docker image Validator OCL CLI
-      uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+      uses: docker/build-push-action@v2
       with:
         context: ${{ github.workspace }}/riseclipse-validator-ocl
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
+        build-args: GH_WS=${{ github.workspace }}
 
     - name: Build and push Docker image Validator NSD CLI
-      uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+      uses: docker/build-push-action@v2
       with:
         context: ${{ github.workspace }}/riseclipse-validator-nsd2003
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
+        build-args: GH_WS=${{ github.workspace }}
