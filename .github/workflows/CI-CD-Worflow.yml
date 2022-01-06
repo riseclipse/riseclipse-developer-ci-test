@@ -213,7 +213,7 @@ jobs:
     - name: Checkout riseclipse-metamodel-nsd2016
       uses: actions/checkout@v2
       with:
-        path: riseclipse-metamodel-nsd2003
+        path: riseclipse-metamodel-nsd2016
         repository: RiseClipse/riseclipse-metamodel-nsd2016
         ref: dev-ci
 
