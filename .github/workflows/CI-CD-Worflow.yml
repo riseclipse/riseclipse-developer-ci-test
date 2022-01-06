@@ -232,7 +232,8 @@ jobs:
     - name: Build and push Docker image Validator SCL CLI
       uses: docker/build-push-action@v2
       with:
-        context: ${{ github.workspace }}/riseclipse-validator-scl2003
+        context: ${{ github.workspace }}
+        file: ${{ github.workspace }}/riseclipse-validator-scl2003
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
@@ -241,7 +242,8 @@ jobs:
     - name: Build and push Docker image Validator OCL CLI
       uses: docker/build-push-action@v2
       with:
-        context: ${{ github.workspace }}/riseclipse-validator-ocl
+        context: ${{ github.workspace }}
+        file: ${{ github.workspace }}/riseclipse-validator-ocl
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
@@ -250,7 +252,8 @@ jobs:
     - name: Build and push Docker image Validator NSD CLI
       uses: docker/build-push-action@v2
       with:
-        context: ${{ github.workspace }}/riseclipse-validator-nsd2003
+        context: ${{ github.workspace }}
+        file: ${{ github.workspace }}/riseclipse-validator-nsd2016
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
