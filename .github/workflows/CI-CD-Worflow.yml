@@ -159,8 +159,14 @@ jobs:
         release_name: Release ${{github.ref_name}}
         draft: true
         prerelease: false
+  
+    - name: Download artifact zip
+      uses: actions/download-artifact@master
+      with:
+        name: RiseClipse.zip
+        path: ${{ github.workspace }}
 
-    - name: Upload Release Validator SCL
+    - name: Upload Release ZIP
       id: upload-release-asset 
       uses: actions/upload-release-asset@v1
       env:
@@ -169,7 +175,7 @@ jobs:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
         asset_path: ${{ github.workspace }}/RiseClipse.zip
         asset_name: RiseClipse.zip
-        asset_content_type: file/zip
+        asset_content_type: application/zip
 
   publish_dockerhub:
     runs-on: ubuntu-latest
@@ -202,14 +208,14 @@ jobs:
       with:
         path: riseclipse-validator-ocl
         repository: RiseClipse/riseclipse-validator-ocl
-        ref: test-scripts
+        ref: dev-ci
     
     - name: Checkout riseclipse-metamodel-nsd2003
       uses: actions/checkout@v2
       with:
         path: riseclipse-metamodel-nsd2003
         repository: RiseClipse/riseclipse-metamodel-nsd2003
-        ref: test-scripts
+        ref: dev-ci
 
     # Build and push images for each validator
     - name: Build and push Docker image Validator SCL CLI
