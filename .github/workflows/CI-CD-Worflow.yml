@@ -235,7 +235,7 @@ jobs:
         context: ${{ github.workspace }}
         file: ${{ github.workspace }}/riseclipse-validator-scl2003/Dockerfile
         push: true
-        tags: validator-scl
+        tags: alsoares59/riseclipse:validator-scl
         labels: ${{ steps.meta.outputs.labels }}
         build-args: GH_WS=${{ github.workspace }}
 
@@ -245,7 +245,7 @@ jobs:
         context: ${{ github.workspace }}
         file: ${{ github.workspace }}/riseclipse-validator-ocl/Dockerfile
         push: true
-        tags: validator-ocl
+        tags: alsoares59/riseclipse:validator-ocl
         labels: ${{ steps.meta.outputs.labels }}
         build-args: GH_WS=${{ github.workspace }}
 
@@ -255,6 +255,6 @@ jobs:
         context: ${{ github.workspace }}
         file: ${{ github.workspace }}/riseclipse-metamodel-nsd2016/Dockerfile
         push: true
-        tags: metamodel-nsd
+        tags: alsoares59/riseclipse:metamodel-nsd
         labels: ${{ steps.meta.outputs.labels }}
         build-args: GH_WS=${{ github.workspace }}
