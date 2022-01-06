@@ -217,6 +217,17 @@ jobs:
         repository: RiseClipse/riseclipse-metamodel-nsd2016
         ref: dev-ci
 
+    # Download and unzip artefacts
+    - name: Download artifact zip
+      uses: actions/download-artifact@master
+      with:
+        name: RiseClipse.zip
+        path: ${{ github.workspace }}
+
+    - name: Unzip artefacts
+      run: |
+        unzip RiseClipse.zip -d ${{ github.workspace }}
+
     # Build and push images for each validator
     - name: Build and push Docker image Validator SCL CLI
       uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
