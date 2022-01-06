@@ -227,9 +227,6 @@ jobs:
     - name: Unzip artefacts
       run: |
         unzip RiseClipse.zip -d ${{ github.workspace }}
-        ls ${{ github.workspace }}
-        unzip RiseClipse.zip -d /
-        ls /
 
     # Build and push images for each validator
     - name: Build and push Docker image Validator SCL CLI
