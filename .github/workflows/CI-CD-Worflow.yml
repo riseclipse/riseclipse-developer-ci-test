@@ -233,7 +233,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: ${{ github.workspace }}
-        file: ${{ github.workspace }}/riseclipse-validator-scl2003
+        file: ${{ github.workspace }}/riseclipse-validator-scl2003/Dockerfile
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
@@ -243,7 +243,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: ${{ github.workspace }}
-        file: ${{ github.workspace }}/riseclipse-validator-ocl
+        file: ${{ github.workspace }}/riseclipse-validator-ocl/Dockerfile
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
@@ -253,7 +253,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: ${{ github.workspace }}
-        file: ${{ github.workspace }}/riseclipse-validator-nsd2016
+        file: ${{ github.workspace }}/riseclipse-metamodel-nsd2016/Dockerfile
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
