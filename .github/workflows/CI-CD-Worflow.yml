@@ -63,9 +63,6 @@ jobs:
         distribution: 'adopt'
         cache: maven
 
-    # - name: Clean
-    #   run: mvn clean package
-
     - name: Build with Maven 
       run: |
         cd riseclipse-developer
@@ -76,8 +73,6 @@ jobs:
       run: |
         mv ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-*.jar ${{ github.workspace }}/RiseClipse-Validator-SCL-CLI.jar
         mv ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator.ui/target/RiseClipseValidatorSCLApplication-*.jar ${{ github.workspace }}/RiseClipse-Validator-SCL-UI.jar
-        mv ${{ github.workspace }}/riseclipse-validator-ocl/fr.centralesupelec.edf.riseclipse.validation.ocl/target/fr.centralesupelec.edf.riseclipse.validation.ocl-1.1.0-SNAPSHOT.jar ${{ github.workspace }}/RiseClipse-Validator-OCL-CLI.jar
-        mv ${{ github.workspace }}/riseclipse-metamodel-nsd2016/fr.centralesupelec.edf.riseclipse.iec61850.nsd/target/fr.centralesupelec.edf.riseclipse.iec61850.nsd-1.1.0-SNAPSHOT.jar ${{ github.workspace }}/RiseClipse-Validator-NSD-CLI.jar
         zip ${{ github.workspace }}/RiseClipse.zip RiseClipse-Validator-SCL-CLI.jar RiseClipse-Validator-SCL-UI.jar RiseClipse-Validator-OCL-CLI.jar RiseClipse-Validator-NSD-CLI.jar
         ls ${{ github.workspace }}
 
@@ -92,18 +87,6 @@ jobs:
       with:
         name: RiseClipse-Validator-SCL-UI.jar
         path: ${{ github.workspace }}/RiseClipse-Validator-SCL-UI.jar
-
-    - name: Upload artifact Validator OCL CLI
-      uses: actions/upload-artifact@v2
-      with:
-        name: RiseClipse-Validator-OCL-CLI.jar
-        path: ${{ github.workspace }}/RiseClipse-Validator-OCL-CLI.jar
-
-    - name: Upload artifact Validator NSD CLI
-      uses: actions/upload-artifact@v2
-      with:
-        name: RiseClipse-Validator-NSD-CLI.jar
-        path: ${{ github.workspace }}/RiseClipse-Validator-NSD-CLI.jar
 
     - name: Upload artifact zipped
       uses: actions/upload-artifact@v2
@@ -203,20 +186,6 @@ jobs:
         repository: RiseClipse/riseclipse-validator-scl2003
         ref: dev-ci
 
-    - name: Checkout riseclipse-validator-ocl
-      uses: actions/checkout@v2
-      with:
-        path: riseclipse-validator-ocl
-        repository: RiseClipse/riseclipse-validator-ocl
-        ref: dev-ci
-    
-    - name: Checkout riseclipse-metamodel-nsd2016
-      uses: actions/checkout@v2
-      with:
-        path: riseclipse-metamodel-nsd2016
-        repository: RiseClipse/riseclipse-metamodel-nsd2016
-        ref: dev-ci
-
     # Download and unzip artefacts
     - name: Download artifact zip
       uses: actions/download-artifact@master
@@ -236,25 +205,5 @@ jobs:
         file: ${{ github.workspace }}/riseclipse-validator-scl2003/Dockerfile
         push: true
         tags: alsoares59/riseclipse:validator-scl
-        labels: ${{ steps.meta.outputs.labels }}
-        build-args: GH_WS=${{ github.workspace }}
-
-    - name: Build and push Docker image Validator OCL CLI
-      uses: docker/build-push-action@v2
-      with:
-        context: ${{ github.workspace }}
-        file: ${{ github.workspace }}/riseclipse-validator-ocl/Dockerfile
-        push: true
-        tags: alsoares59/riseclipse:validator-ocl
-        labels: ${{ steps.meta.outputs.labels }}
-        build-args: GH_WS=${{ github.workspace }}
-
-    - name: Build and push Docker image Validator NSD CLI
-      uses: docker/build-push-action@v2
-      with:
-        context: ${{ github.workspace }}
-        file: ${{ github.workspace }}/riseclipse-metamodel-nsd2016/Dockerfile
-        push: true
-        tags: alsoares59/riseclipse:metamodel-nsd
         labels: ${{ steps.meta.outputs.labels }}
         build-args: GH_WS=${{ github.workspace }}
