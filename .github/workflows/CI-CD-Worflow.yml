@@ -106,6 +106,13 @@ jobs:
         repository: RiseClipse/riseclipse-validator-scl2003-test
         ref: master
 
+    - name: Checkout riseclipse-validator-scl2003
+      uses: actions/checkout@v2
+      with:
+        path: riseclipse-validator-scl2003
+        repository: RiseClipse/riseclipse-validator-scl2003
+        ref: master
+
     - name: Download artifact .jar
       uses: actions/download-artifact@master
       with:
