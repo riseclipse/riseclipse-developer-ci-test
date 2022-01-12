@@ -26,7 +26,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         path: riseclipse-validator-scl2003-test
-        repository: RiseClipse/riseclipse-validator-scl2003
+        repository: RiseClipse/riseclipse-validator-scl2003-test
         ref: master
 
     - name: Checkout riseclipse-validator-ocl
