@@ -22,13 +22,6 @@ jobs:
         repository: RiseClipse/riseclipse-validator-scl2003
         ref: dev-ci
 
-    - name: Checkout riseclipse-validator-scl2003-test
-      uses: actions/checkout@v2
-      with:
-        path: riseclipse-validator-scl2003-test
-        repository: RiseClipse/riseclipse-validator-scl2003-test
-        ref: master
-
     - name: Checkout riseclipse-validator-ocl
       uses: actions/checkout@v2
       with:
@@ -106,12 +99,12 @@ jobs:
     needs: [build]
 
     steps: 
-    - name: Checkout riseclipse-validator-scl2003
+    - name: Checkout riseclipse-validator-scl2003-test
       uses: actions/checkout@v2
       with:
-        path: riseclipse-validator-scl2003
-        repository: RiseClipse/riseclipse-validator-scl2003
-        ref: test-scripts
+        path: riseclipse-validator-scl2003-test
+        repository: RiseClipse/riseclipse-validator-scl2003-test
+        ref: master
 
     - name: Download artifact .jar
       uses: actions/download-artifact@master
