@@ -255,7 +255,7 @@ jobs:
 
     - name: Apply variables to template
       run: |
-        export RiseclipseCLI="RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar"
+        export RiseClipseCLI="RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar"
         cd ${{ github.workspace }}/riseclipse.github.io
         rm downloads.md
         cp templates/downloads-tp.md  downloads.md
