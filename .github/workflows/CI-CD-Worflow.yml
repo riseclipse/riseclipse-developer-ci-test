@@ -251,12 +251,12 @@ jobs:
 
     - name: Update downloads file with newer versions
       run: |
-        cp RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar /riseclipse.github.io/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar
+        cp ${{ github.workspace }}RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar ${{ github.workspace }}/riseclipse.github.io/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar
 
     - name: Apply variables to template
       run: |
         export RiseclipseCLI="RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar"
-        cd riseclipse.github.io
+        cd ${{ github.workspace }}/riseclipse.github.io
         rm downloads.md
         cp templates/downloads-tp.md  downloads.md
         envsubst < downloads.md
@@ -264,4 +264,4 @@ jobs:
     - name: Add & Commit previous changes
       uses: EndBug/add-and-commit@v7.5.0
       with:
-        cwd: '/riseclipse.github.io'
+        cwd: '${{ github.workspace }}/riseclipse.github.io'
