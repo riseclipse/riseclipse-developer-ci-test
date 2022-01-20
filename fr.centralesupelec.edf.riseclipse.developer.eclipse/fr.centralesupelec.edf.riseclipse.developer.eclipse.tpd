@@ -3,7 +3,7 @@ target "fr.centralesupelec.edf.riseclipse.developer.eclipse"
 
 environment JavaSE-11
 
-location "http://download.eclipse.org/releases/2021-09" {
+location "http://download.eclipse.org/releases/2021-12" {
 	org.eclipse.core.commands
 	org.eclipse.core.resources
 	org.eclipse.platform.feature.group
@@ -22,7 +22,7 @@ location "http://download.eclipse.org/releases/2021-09" {
     org.eclipse.xtext.util
 }
 
-location "https://download.eclipse.org/tools/orbit/downloads/drops/R20210825222808/repository/" orbit-2021-09 {
+location "https://download.eclipse.org/tools/orbit/downloads/drops/R20211213173813/repository" orbit-2021-12 {
     org.apache.commons.lang3
     com.google.guava
     com.google.inject
