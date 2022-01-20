@@ -225,3 +225,43 @@ jobs:
         tags: alsoares59/riseclipse:validator-scl
         labels: ${{ steps.meta.outputs.labels }}
         build-args: GH_WS=${{ github.workspace }}
+
+  publish_github_io:
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    # if: github.ref == 'refs/heads/master' && contains(github.ref, 'refs/tags/')
+    steps: 
+    - name: Checkout riseclipse github.io
+      uses: actions/checkout@v2
+      with:
+        path: riseclipse.github.io
+        repository: RiseClipse/riseclipse.github.io
+        ref: dev-ci
+
+    # Download and unzip artefacts
+    - name: Download artifact zip
+      uses: actions/download-artifact@master
+      with:
+        name: RiseClipse.zip
+        path: ${{ github.workspace }}
+
+    - name: Unzip artefacts
+      run: |
+        unzip RiseClipse.zip -d ${{ github.workspace }}
+
+    - name: Update downloads file with newer versions
+      run: |
+        cp RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar /riseclipse.github.io/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar
+
+    - name: Apply variables to template
+      run: |
+        export RiseclipseCLI="RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar"
+        cd riseclipse.github.io
+        rm downloads.md
+        cp templates/downloads-tp.md  downloads.md
+        envsubst < downloads.md
+
+    - name: Add & Commit previous changes
+      uses: EndBug/add-and-commit@v7.5.0
+      with:
+        cwd: '/riseclipse.github.io'
