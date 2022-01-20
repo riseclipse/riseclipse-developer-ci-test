@@ -251,7 +251,7 @@ jobs:
 
     - name: Update downloads file with newer versions
       run: |
-        cp ${{ github.workspace }}RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar ${{ github.workspace }}/riseclipse.github.io/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar
+        cp ${{ github.workspace }}/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar ${{ github.workspace }}/riseclipse.github.io/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar
 
     - name: Apply variables to template
       run: |
