@@ -6,7 +6,8 @@ jobs:
   # CI part
   build:
     runs-on: ubuntu-latest
-
+    outputs:
+      project_version: ${{ steps.get_version.outputs.project_version }}
     steps: 
     - name: Checkout riseclipse-metamodel-nsd2016
       uses: actions/checkout@v2
@@ -69,24 +70,33 @@ jobs:
         cd fr.centralesupelec.edf.riseclipse.developer.maven.validator.scl
         mvn install
 
-    - name: Rename artefacts and zip them all
+    - name: Extract Maven project version
       run: |
-        mv ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-*.jar ${{ github.workspace }}/RiseClipse-Validator-SCL-CLI.jar
-        mv ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator.ui/target/RiseClipseValidatorSCLApplication-*.jar ${{ github.workspace }}/RiseClipse-Validator-SCL-UI.jar
-        zip ${{ github.workspace }}/RiseClipse.zip RiseClipse-Validator-SCL-CLI.jar RiseClipse-Validator-SCL-UI.jar RiseClipse-Validator-OCL-CLI.jar RiseClipse-Validator-NSD-CLI.jar
+        cd riseclipse-developer
+        echo ::set-output name=project_verison::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+      id: get_version
+
+    - name: Show extracted Maven project version
+      run: echo ${{ steps.get_version.outputs.project_version }}
+
+    - name: Zip artifacts all
+      run: |
+        mv ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator/target/RiseClipseValidatorSCL-${{ steps.get_version.outputs.project_version }}.jar ${{ github.workspace }}
+        mv ${{ github.workspace }}/riseclipse-validator-scl2003/fr.centralesupelec.edf.riseclipse.iec61850.scl.validator.ui/target/RiseClipseValidatorSCLApplication-${{ steps.get_version.outputs.project_version }}.jar ${{ github.workspace }}
+        zip ${{ github.workspace }}/RiseClipse.zip RiseClipseValidatorSCL-${{ steps.get_version.outputs.project_version }}.jar RiseClipseValidatorSCLApplication-${{ steps.get_version.outputs.project_version }}.jar
         ls ${{ github.workspace }}
 
     - name: Upload artifact Validator SCL CLI
       uses: actions/upload-artifact@v2
       with:
-        name: RiseClipse-Validator-SCL-CLI.jar
-        path: ${{ github.workspace }}/RiseClipse-Validator-SCL-CLI.jar
+        name: RiseClipseValidatorSCL-${{ steps.get_version.outputs.project_version }}.jar
+        path: ${{ github.workspace }}/RiseClipseValidatorSCL-${{ steps.get_version.outputs.project_version }}.jar
 
     - name: Upload artifact Validator SCL UI
       uses: actions/upload-artifact@v2
       with:
-        name: RiseClipse-Validator-SCL-UI.jar
-        path: ${{ github.workspace }}/RiseClipse-Validator-SCL-UI.jar
+        name: RiseClipseValidatorSCLApplication-${{ steps.get_version.outputs.project_version }}.jar
+        path: ${{ github.workspace }}/RiseClipseValidatorSCLApplication-${{ steps.get_version.outputs.project_version }}.jar
 
     - name: Upload artifact zipped
       uses: actions/upload-artifact@v2
@@ -131,13 +141,13 @@ jobs:
         cd riseclipse-validator-scl2003-test   
         echo ${{ github.workspace }}
         ls ${{ github.workspace }}
-        ./run_tests.sh -j ${{ github.workspace }}/RiseClipse-Validator-SCL-CLI.jar
+        ./run_tests.sh -j ${{ github.workspace }}/RiseClipseValidatorSCL-${{ build.outputs.project_version }}.jar
 
   # CD Part
   publish_release:
     needs: [build, test]
     runs-on: ubuntu-latest
-    # if: github.ref == 'refs/heads/master'
+    # if: github.ref == 'refs/heads/master' && contains(github.ref, 'refs/tags/')
     steps: 
     - name: Create Release
       id: create_release
@@ -171,7 +181,7 @@ jobs:
   publish_dockerhub:
     runs-on: ubuntu-latest
     needs: [build, test]
-    # if: github.ref == 'refs/heads/master'
+    # if: github.ref == 'refs/heads/master' && contains(github.ref, 'refs/tags/')
     steps: 
     # Login to Docker Hub
     - name: Log in to Docker Hub
