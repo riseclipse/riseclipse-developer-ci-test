@@ -141,7 +141,7 @@ jobs:
         cd riseclipse-validator-scl2003-test   
         echo ${{ github.workspace }}
         ls ${{ github.workspace }}
-        ./run_tests.sh -j ${{ github.workspace }}/RiseClipseValidatorSCL-${{ build.outputs.project_version }}.jar
+        ./run_tests.sh -j ${{ github.workspace }}/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar
 
   # CD Part
   publish_release:
