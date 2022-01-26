@@ -237,6 +237,7 @@ jobs:
         path: riseclipse.github.io
         repository: RiseClipse/riseclipse.github.io
         ref: dev-ci
+        token: ${{ secrets.TMP_IO_TOKEN }}
 
     # Download and unzip artefacts
     - name: Download artifact zip
@@ -262,8 +263,14 @@ jobs:
         cp templates/downloads-tp.md  downloads.md
         envsubst < downloads.md
 
-    - name: Commit changes made to riseclipse.github.io
+    - name: Commit and push changes made to riseclipse.github.io
       run: |
         cd riseclipse.github.io
+        git config --local user.email "actions@github.com"
+        git config --local user.name "github-actions"
         git add --all
-        git push
+        git commit -m "GitHub Actions updating available versions in website" -a
+        git push https://$USERNAME:$REPO_KEY@github.com/RiseClipse/riseclipse.github.io dev-ci
+      env:
+        REPO_KEY: ${{ secrets.TMP_IO_TOKEN }}
+        USERNAME: SoaAlex
