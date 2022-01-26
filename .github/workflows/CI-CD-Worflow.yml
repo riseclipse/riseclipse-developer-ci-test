@@ -252,7 +252,7 @@ jobs:
 
     - name: Update downloads file with newer versions
       run: |
-        cp ${{ github.workspace }}/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar ${{ github.workspace }}/riseclipse.github.io/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar
+        cp ${{ github.workspace }}/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar ${{ github.workspace }}/riseclipse.github.io/downloads/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar
         ls ${{ github.workspace }}
 
     - name: Apply variables to template
@@ -266,7 +266,7 @@ jobs:
     - name: Commit and push changes made to riseclipse.github.io
       run: |
         cd riseclipse.github.io
-        git config --local user.email "actions@github.com"
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions"
         git add --all
         git commit -m "GitHub Actions updating available versions in website" -a
