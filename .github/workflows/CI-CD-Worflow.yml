@@ -202,7 +202,7 @@ jobs:
       with:
         path: riseclipse-validator-scl2003
         repository: RiseClipse/riseclipse-validator-scl2003
-        ref: dev-ci
+        ref: ${{ github.ref_name }}
 
     # Download and unzip artefacts
     - name: Download artifact zip
@@ -222,7 +222,7 @@ jobs:
         context: ${{ github.workspace }}
         file: ${{ github.workspace }}/riseclipse-validator-scl2003/Dockerfile
         push: true
-        tags: alsoares59/riseclipse:validator-scl
+        tags: alsoares59/riseclipse:validator-scl-${{ needs.build.outputs.project_version }}
         labels: ${{ steps.meta.outputs.labels }}
         build-args: GH_WS=${{ github.workspace }}
 
@@ -252,6 +252,7 @@ jobs:
     - name: Update downloads file with newer versions
       run: |
         cp ${{ github.workspace }}/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar ${{ github.workspace }}/riseclipse.github.io/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar
+        ls ${{ github.workspace }}
 
     - name: Apply variables to template
       run: |
@@ -264,4 +265,4 @@ jobs:
     - name: Add & Commit previous changes
       uses: EndBug/add-and-commit@v7.5.0
       with:
-        cwd: '${{ github.workspace }}/riseclipse.github.io'
+        cwd: "${{ github.workspace }}/riseclipse.github.io"
