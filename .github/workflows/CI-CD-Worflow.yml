@@ -262,8 +262,8 @@ jobs:
         cp templates/downloads-tp.md  downloads.md
         envsubst < downloads.md
 
-    - name: Add & Commit previous changes
-      uses: EndBug/add-and-commit@v7.5.0
-      with:
-        cwd: "riseclipse.github.io"
-        default_author: github_actions
+    - name: Commit changes made to riseclipse.github.io
+      run: |
+        cd riseclipse.github.io
+        git add --all
+        git push
