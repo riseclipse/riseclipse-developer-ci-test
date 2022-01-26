@@ -14,7 +14,7 @@ jobs:
       with:
         path: riseclipse-metamodel-nsd2016
         repository: RiseClipse/riseclipse-metamodel-nsd2016
-        ref: dev-ci
+        ref: master
 
     - name: Checkout riseclipse-validator-scl2003
       uses: actions/checkout@v2
@@ -28,34 +28,34 @@ jobs:
       with:
         path: riseclipse-validator-ocl
         repository: RiseClipse/riseclipse-validator-ocl
-        ref: dev-ci
+        ref: master
 
     - name: Checkout riseclipse-metamodel-scl2003
       uses: actions/checkout@v2
       with:
         path: riseclipse-metamodel-scl2003
         repository: RiseClipse/riseclipse-metamodel-scl2003
-        ref: dev-ci
+        ref: master
 
     - name: Checkout riseclipse-editor
       uses: actions/checkout@v2
       with:
         path: riseclipse-editor
         repository: RiseClipse/riseclipse-editor
-        ref: Use-up-to-date-components
+        ref: master
 
     - name: Checkout riseclipse-main
       uses: actions/checkout@v2
       with:
         path: riseclipse-main
         repository: RiseClipse/riseclipse-main
-        ref: use-up-to-date-components
+        ref: master
 
     - name: Checkout riseclipse-developer
       uses: actions/checkout@v2
       with:
         path: riseclipse-developer
-        ref: dev-ci
+        ref: ${{ github.ref_name }}
 
     - name: Set up JDK 11
       uses: actions/setup-java@v2
