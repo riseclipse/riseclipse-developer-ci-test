@@ -51,4 +51,9 @@
     <module>fr.centralesupelec.edf.riseclipse.developer.p2_to_m2</module>
   </modules>
 
+  <properties>
+    <sonar.organization>riseclipse</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+  </properties>
+
 </project>

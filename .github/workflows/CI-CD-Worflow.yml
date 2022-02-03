@@ -21,7 +21,7 @@ jobs:
       with:
         path: riseclipse-validator-scl2003
         repository: RiseClipse/riseclipse-validator-scl2003
-        ref: dev-ci
+        ref: sonarqube-integration
 
     - name: Checkout riseclipse-validator-ocl
       uses: actions/checkout@v2
@@ -68,7 +68,7 @@ jobs:
       run: |
         cd riseclipse-developer
         cd fr.centralesupelec.edf.riseclipse.developer.maven.validator.scl
-        mvn install
+        mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=riseclipse_riseclipse-validator-scl2003
 
     - name: Extract Maven project version
       run: |
