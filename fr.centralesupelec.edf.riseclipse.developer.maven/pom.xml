@@ -28,6 +28,12 @@
     This is the root POM for RiseClipse.
     All common properties should be defined here.
   -->
+  
+  <!--
+    Any update to project.version must be propagated to the property
+        <riseclipse-target-platform-version>
+    (without -SNAPSHOT)
+  -->
  
   <groupId>io.github.riseclipse</groupId>
   <artifactId>fr.centralesupelec.edf.riseclipse.developer.maven</artifactId>
@@ -92,6 +98,8 @@
   </distributionManagement>  
 
   <properties>
+    <riseclipse-target-platform-version>1.2.1</riseclipse-target-platform-version>
+    
     <maven-group-id>org.apache.maven.plugins</maven-group-id>
     <maven-clean-plugin-version>3.1.0</maven-clean-plugin-version>
     <maven-resources-plugin-version>3.2.0</maven-resources-plugin-version>
@@ -594,7 +602,7 @@
             <artifact>
               <groupId>io.github.riseclipse</groupId>
               <artifactId>fr.centralesupelec.edf.riseclipse.developer.eclipse</artifactId>
-              <version>1.2.0-SNAPSHOT</version>
+              <version>${riseclipse-target-platform-version}</version>
             </artifact>
           </target>
         </configuration>
