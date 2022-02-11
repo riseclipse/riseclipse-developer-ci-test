@@ -431,63 +431,6 @@
         </plugin>
         <plugin>
           <groupId>${maven-group-id}</groupId>
-          <artifactId>maven-source-plugin</artifactId>
-          <version>${maven-source-plugin-version}</version>
-          <!-- See https://central.sonatype.org/publish/publish-maven/ -->
-          <executions>
-            <execution>
-              <id>attach-sources</id>
-              <goals>
-                <goal>jar-no-fork</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>${maven-group-id}</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>${maven-javadoc-plugin-version}</version>
-          <configuration>
-            <!--
-              Many Eclipse plugins are not using modules of Java 9.
-              Automatic modules are used instead.
-              However, some java packages are split in several jars, and this
-              leads to errors like "module M reads package P from both J1 and J2".
-              To avoid this, we tell javadoc to use Java 1.8.
-            -->
-            <source>1.8</source>          
-          </configuration>
-          <!-- See https://central.sonatype.org/publish/publish-maven/ -->
-          <executions>
-            <execution>
-              <id>attach-javadocs</id>
-              <goals>
-                <goal>jar</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>${maven-group-id}</groupId>
-          <artifactId>maven-gpg-plugin</artifactId>
-          <version>${maven-gpg-plugin-version}</version>
-          <!-- See https://central.sonatype.org/publish/publish-maven/ -->
-          <executions>
-            <execution>
-              <id>sign-artifacts</id>
-              <phase>verify</phase>
-              <goals>
-                <goal>sign</goal>
-              </goals>
-              <configuration>
-                <keyname>${gpg.keyname}</keyname>
-                <passphraseServerId>${gpg.keyname}</passphraseServerId>
-              </configuration>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>${maven-group-id}</groupId>
           <artifactId>maven-install-plugin</artifactId>
           <version>${maven-install-plugin-version}</version>
         </plugin>
@@ -656,15 +599,93 @@
   </build>
   
   <profiles>
+
+    <profile>
+      <id>release</id>
+      
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+
+      <build>
+        <plugins>
+        
+          <plugin>
+            <groupId>${maven-group-id}</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>${maven-source-plugin-version}</version>
+            <!-- See https://central.sonatype.org/publish/publish-maven/ -->
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>${maven-group-id}</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${maven-javadoc-plugin-version}</version>
+            <configuration>
+              <!--
+                Many Eclipse plugins are not using modules of Java 9.
+                Automatic modules are used instead.
+                However, some java packages are split in several jars, and this
+                leads to errors like "module M reads package P from both J1 and J2".
+                To avoid this, we tell javadoc to use Java 1.8.
+              -->
+              <source>1.8</source>          
+            </configuration>
+            <!-- See https://central.sonatype.org/publish/publish-maven/ -->
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          
+          <plugin>
+            <groupId>${maven-group-id}</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>${maven-gpg-plugin-version}</version>
+            <!-- See https://central.sonatype.org/publish/publish-maven/ -->
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+                <configuration>
+                  <keyname>${gpg.keyname}</keyname>
+                  <passphraseServerId>${gpg.keyname}</passphraseServerId>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
     <!-- An error is produced by maven-scm-plugin if no file is modified by tycho-versions-plugin.
          We use a profile to enable this step only when a file that will be modified is present -->
     <profile>
       <id>tycho-enabled-for-release</id>
+      
       <activation>
         <file>
           <exists>META-INF/MANIFEST.MF</exists>
         </file>
       </activation>
+      
       <build>
         <plugins>
           <!-- See https://wiki.eclipse.org/Tycho/Release_Workflow -->
@@ -685,6 +706,7 @@
               </completionGoals>
             </configuration>
           </plugin>
+          
           <plugin>
             <groupId>${maven-group-id}</groupId>
             <artifactId>maven-scm-plugin</artifactId>
