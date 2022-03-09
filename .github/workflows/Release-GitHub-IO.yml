@@ -1,0 +1,68 @@
+# This CD workflow releases packages to GitHub IO website
+# It only runs on MASTER branch AFTER Build and Test Workflow is completed AND if commit is tagged (which is done when merging previous commits)
+
+name: Release on GitHub IO site
+
+on:
+  workflow_run:
+    workflows: [Build and test]
+    types:
+      - completed
+    branches: [master, main]
+
+jobs:
+  publish_github_io:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' && contains(github.ref, 'refs/tags/')
+
+    steps: 
+    - name: Download artifact
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: Release-Build-Test.yml
+        workflow_conclusion: success
+
+    - name: Checkout riseclipse github.io
+      uses: actions/checkout@v2
+      with:
+        path: riseclipse.github.io
+        repository: RiseClipse/riseclipse.github.io
+        ref: dev-ci
+        token: ${{ secrets.TMP_IO_TOKEN }}
+
+    # Download and unzip artefacts
+    - name: Download artifact zip
+      uses: actions/download-artifact@master
+      with:
+        name: RiseClipse.zip
+        path: ${{ github.workspace }}
+
+    - name: Unzip artefacts
+      run: |
+        unzip RiseClipse.zip -d ${{ github.workspace }}
+
+    - name: Update downloads file with newer versions
+      run: |
+        cp ${{ github.workspace }}/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar ${{ github.workspace }}/riseclipse.github.io/downloads/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar
+        ls ${{ github.workspace }}
+
+    - name: Apply variables to template
+      run: |
+        export RiseClipseCLI="RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar"
+        cd ${{ github.workspace }}/riseclipse.github.io
+        rm downloads.md
+        cp templates/downloads-tp.md  downloads.md
+        envsubst < downloads.md
+
+    - name: Commit and push changes made to riseclipse.github.io
+      run: |
+        cd riseclipse.github.io
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions"
+        git add --all
+        git commit -m "[AUTO] Updating available versions" -a
+        git push https://$USERNAME:$REPO_KEY@github.com/RiseClipse/riseclipse.github.io dev-ci
+      env:
+        REPO_KEY: ${{ secrets.TMP_IO_TOKEN }}
+        USERNAME: SoaAlex

@@ -1,0 +1,20 @@
+# If for some reason one of the release workflows failed, rollbacks to the previous commits
+
+name: Rollback Failure
+
+on:
+  workflow_run:
+    workflows: [Build and test]
+    types:
+      - completed
+    branches: [master, main]
+
+jobs:
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+
+    steps:
+      - name: clear repository
+        run: |
+          mvn clean
