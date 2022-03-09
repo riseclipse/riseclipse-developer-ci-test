@@ -15,8 +15,15 @@ jobs:
     needs: [build, test]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' && contains(github.ref, 'refs/tags/')
-    
+
     steps: 
+    - name: Download artifact
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: Release-Build-Test.yml
+        workflow_conclusion: success
+        
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1

@@ -16,6 +16,14 @@ jobs:
     if: github.ref == 'refs/heads/master' && contains(github.ref, 'refs/tags/')
 
     steps: 
-      release_ossrh_central:
-        run: |
-          mvn release:perform
+    - name: Download artifact
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: Release-Build-Test.yml
+        workflow_conclusion: success
+
+    - name: release_ossrh_central
+      run: |
+        mvn release:perform
+          
