@@ -1,8 +1,7 @@
-# This CD workflow releases packages to GitHub IO website
-# It only runs on MASTER branch AFTER Build and Test Workflow is completed AND if commit is tagged (which is done when merging previous commits)
-
 name: Release on GitHub IO site
 
+# This CD workflow releases packages to GitHub IO website
+# It only runs on MASTER branch AFTER Build and Test Workflow is completed AND if commit is tagged (which is done when merging previous commits)
 on:
   workflow_run:
     workflows: [Build and test]

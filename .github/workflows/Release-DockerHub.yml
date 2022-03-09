@@ -1,7 +1,7 @@
+name: Release DockerHub
+
 # This CD workflow releases packages to Docker Hub
 # It only runs on MASTER branch AFTER Build and Test Workflow is completed AND if commit is tagged (which is done when merging previous commits)
-
-name: Release DockerHub
 
 on:
   workflow_run:
@@ -22,7 +22,7 @@ jobs:
         github_token: ${{secrets.GITHUB_TOKEN}}
         workflow: Release-Build-Test.yml
         workflow_conclusion: success
-        
+
     # Login to Docker Hub
     - name: Log in to Docker Hub
       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9

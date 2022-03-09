@@ -1,6 +1,6 @@
-# If for some reason one of the release workflows failed, rollbacks to the previous commits
-
 name: Rollback Failure
+
+# If for some reason one of the release workflows failed, rollbacks to the previous commits
 
 on:
   workflow_run:
