@@ -269,7 +269,7 @@ jobs:
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions"
         git add --all
-        git commit -m "GitHub Actions updating available versions in website" -a
+        git commit -m "[AUTO] Updating available versions" -a
         git push https://$USERNAME:$REPO_KEY@github.com/RiseClipse/riseclipse.github.io dev-ci
       env:
         REPO_KEY: ${{ secrets.TMP_IO_TOKEN }}
