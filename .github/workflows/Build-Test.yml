@@ -5,7 +5,7 @@ name: Build and test
 # On master, the build artifacts will be used for releases 
 
 on: 
-  push
+  push:
   pull_request:
     types: [opened, reopened]
 
