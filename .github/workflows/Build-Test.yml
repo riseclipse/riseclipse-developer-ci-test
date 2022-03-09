@@ -4,8 +4,10 @@ name: Build and test
 # On PR creation, we only execute build and run tests since we don't want to release yet
 # On master, the build artifacts will be used for releases 
 
-on: [push, pull_request]
-  types: [opened, reopened]
+on: 
+  push
+  pull_request:
+    types: [opened, reopened]
 
 jobs:
   build:
