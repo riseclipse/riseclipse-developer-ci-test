@@ -4,7 +4,7 @@ name: Rollback Failure
 
 on:
   workflow_run:
-    workflows: [Build and test]
+    workflows: [Build and test, Release DockerHub, Release on GitHub IO site, Release on GitHub, Release on OSSRH and Maven Central ]
     types:
       - completed
     branches: [master, main]

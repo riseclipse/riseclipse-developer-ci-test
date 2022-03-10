@@ -1,4 +1,4 @@
-name: Release on GitHub IO site
+name: Release on GitHub 
 
 # This CD workflow releases packages to GitHub repository
 # It only runs on MASTER branch AFTER Build and Test Workflow is completed AND if commit is tagged (which is done when merging previous commits)

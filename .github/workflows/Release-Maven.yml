@@ -1,4 +1,4 @@
-name: Release on OSSRH, Maven Central
+name: Release on OSSRH and Maven Central
 
 # This CD workflow releases packages to OSSRH Nexus repository and to Maven Central
 # It only runs on MASTER branch AFTER Build and Test Workflow is completed AND if commit is tagged (which is done when merging previous commits)
