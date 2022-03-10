@@ -1,0 +1,54 @@
+name: Release on GitHub 
+
+# This CD workflow releases packages to GitHub repository
+# It only runs on MASTER branch AFTER Build and Test Workflow is completed AND if commit is tagged (which is done when merging previous commits)
+
+on:
+  workflow_run:
+    workflows: [Build and test]
+    types:
+      - completed
+    branches: [master, main]
+
+jobs:
+  publish_release:
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' && contains(github.ref, 'refs/tags/')
+
+    steps: 
+    - name: Download artifact
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: Release-Build-Test.yml
+        workflow_conclusion: success
+        
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{github.ref_name}}
+        release_name: RiseClipse ${{ needs.build.outputs.project_version }}
+        body: This RiseClipse release contains the latest changes available. The ZIP file contains a CLI and UI version of the project. You can learn more by reading the documentation.
+        draft: true
+        prerelease: false
+  
+    - name: Download artifact zip
+      uses: actions/download-artifact@master
+      with:
+        name: RiseClipse.zip
+        path: ${{ github.workspace }}
+
+    - name: Upload Release ZIP
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ${{ github.workspace }}/RiseClipse.zip
+        asset_name: RiseClipse.zip
+        asset_content_type: application/zip

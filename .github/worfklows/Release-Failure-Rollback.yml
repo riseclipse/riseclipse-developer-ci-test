@@ -1,0 +1,20 @@
+name: Rollback Failure
+
+# If for some reason one of the release workflows failed, rollbacks to the previous commits
+
+on:
+  workflow_run:
+    workflows: [Build and test, Release DockerHub, Release on GitHub IO site, Release on GitHub, Release on OSSRH and Maven Central ]
+    types:
+      - completed
+    branches: [master, main]
+
+jobs:
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+
+    steps:
+      - name: clear repository
+        run: |
+          mvn clean
