@@ -1,6 +1,6 @@
 name: Release on GitHub 
 
-# This CD workflow releases packages to GitHub repository
+# This CD workflow releases packages to GitHub repository AND creates a new release branch
 # It only runs on MASTER branch AFTER Build and Test Workflow is completed AND if commit is tagged (which is done when merging previous commits)
 
 on:
@@ -17,38 +17,51 @@ jobs:
     if: github.ref == 'refs/heads/master' && contains(github.ref, 'refs/tags/')
 
     steps: 
+    # Get artefacts and version
     - name: Download artifact
       uses: dawidd6/action-download-artifact@v2
       with:
         github_token: ${{secrets.GITHUB_TOKEN}}
-        workflow: Release-Build-Test.yml
+        workflow: Build-Test.yml
         workflow_conclusion: success
+        path: ${{ github.workspace }}/artifacts
+
+    - name: Checkout riseclipse-developer
+      uses: actions/checkout@v2
+      with:
+        path: riseclipse-developer
+        ref: master
+
+    - name: Extract Maven project version
+      run: |
+        cd riseclipse-developer
+        echo ::set-output name=project_version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+      id: get_version
         
+    # Create new branch and release with artifacts
+    - name: Create Release branch
+      uses: peterjgrainger/action-create-branch@v2.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        branch: 'release/v${{ steps.get_version.outputs.project_version }}'
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{github.ref_name}}
-        release_name: RiseClipse ${{ needs.build.outputs.project_version }}
+        tag_name: v${{ steps.get_version.outputs.project_version }}
+        release_name: RiseClipse ${{ steps.get_version.outputs.project_version }}
         body: This RiseClipse release contains the latest changes available. The ZIP file contains a CLI and UI version of the project. You can learn more by reading the documentation.
-        draft: true
+        draft: false
         prerelease: false
-  
-    - name: Download artifact zip
-      uses: actions/download-artifact@master
-      with:
-        name: RiseClipse.zip
-        path: ${{ github.workspace }}
 
-    - name: Upload Release ZIP
-      id: upload-release-asset 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ${{ github.workspace }}/RiseClipse.zip
-        asset_name: RiseClipse.zip
-        asset_content_type: application/zip
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ${{ github.workspace }}/artifacts
+        tag: ${{ steps.get_version.outputs.project_version }}
+        file_glob: true

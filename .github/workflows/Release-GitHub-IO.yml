@@ -15,12 +15,14 @@ jobs:
     if: github.ref == 'refs/heads/master' && contains(github.ref, 'refs/tags/')
 
     steps: 
+    # Get artefacts and version
     - name: Download artifact
       uses: dawidd6/action-download-artifact@v2
       with:
         github_token: ${{secrets.GITHUB_TOKEN}}
-        workflow: Release-Build-Test.yml
+        workflow: Build-Test.yml
         workflow_conclusion: success
+        path: ${{ github.workspace }}
 
     - name: Checkout riseclipse github.io
       uses: actions/checkout@v2
@@ -30,25 +32,27 @@ jobs:
         ref: dev-ci
         token: ${{ secrets.TMP_IO_TOKEN }}
 
-    # Download and unzip artefacts
-    - name: Download artifact zip
-      uses: actions/download-artifact@master
+    - name: Checkout riseclipse-developer
+      uses: actions/checkout@v2
       with:
-        name: RiseClipse.zip
-        path: ${{ github.workspace }}
+        path: riseclipse-developer
+        ref: master
 
-    - name: Unzip artefacts
+    - name: Extract Maven project version
       run: |
-        unzip RiseClipse.zip -d ${{ github.workspace }}
+        cd riseclipse-developer
+        echo ::set-output name=project_version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+      id: get_version
 
+    # Update templates on GitHub.io
     - name: Update downloads file with newer versions
       run: |
-        cp ${{ github.workspace }}/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar ${{ github.workspace }}/riseclipse.github.io/downloads/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar
+        cp ${{ github.workspace }}/RiseClipseValidatorSCL-${{ steps.get_version.outputs.project_version }}.jar ${{ github.workspace }}/riseclipse.github.io/downloads/RiseClipseValidatorSCL-${{ steps.get_version.outputs.project_version }}.jar
         ls ${{ github.workspace }}
 
     - name: Apply variables to template
       run: |
-        export RiseClipseCLI="RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar"
+        export RiseClipseCLI="RiseClipseValidatorSCL-${{ steps.get_version.outputs.project_version }}.jar"
         cd ${{ github.workspace }}/riseclipse.github.io
         rm downloads.md
         cp templates/downloads-tp.md  downloads.md

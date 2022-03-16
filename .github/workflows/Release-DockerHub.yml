@@ -16,12 +16,26 @@ jobs:
     if: github.ref == 'refs/heads/master' && contains(github.ref, 'refs/tags/')
 
     steps: 
+    # Get artefacts and version
     - name: Download artifact
       uses: dawidd6/action-download-artifact@v2
       with:
         github_token: ${{secrets.GITHUB_TOKEN}}
-        workflow: Release-Build-Test.yml
+        workflow: Build-Test.yml
         workflow_conclusion: success
+        path: ${{ github.workspace }}
+
+    - name: Checkout riseclipse-developer
+      uses: actions/checkout@v2
+      with:
+        path: riseclipse-developer
+        ref: master
+
+    - name: Extract Maven project version
+      run: |
+        cd riseclipse-developer
+        echo ::set-output name=project_version::$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+      id: get_version
 
     # Login to Docker Hub
     - name: Log in to Docker Hub
@@ -44,17 +58,6 @@ jobs:
         repository: RiseClipse/riseclipse-validator-scl2003
         ref: ${{ github.ref_name }}
 
-    # Download and unzip artefacts
-    - name: Download artifact zip
-      uses: actions/download-artifact@master
-      with:
-        name: RiseClipse.zip
-        path: ${{ github.workspace }}
-
-    - name: Unzip artefacts
-      run: |
-        unzip RiseClipse.zip -d ${{ github.workspace }}
-
     # Build and push images for each validator
     - name: Build and push Docker image Validator SCL CLI
       uses: docker/build-push-action@v2
@@ -62,6 +65,6 @@ jobs:
         context: ${{ github.workspace }}
         file: ${{ github.workspace }}/riseclipse-validator-scl2003/Dockerfile
         push: true
-        tags: alsoares59/riseclipse:validator-scl-${{ needs.build.outputs.project_version }}
+        tags: alsoares59/riseclipse:validator-scl-${{ steps.get_version.outputs.project_version }}
         labels: ${{ steps.meta.outputs.labels }}
         build-args: GH_WS=${{ github.workspace }}
