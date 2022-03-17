@@ -12,7 +12,6 @@ on:
 jobs:
   publish_github_io:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' && contains(github.ref, 'refs/tags/')
 
     steps: 
     # Get artefacts and version

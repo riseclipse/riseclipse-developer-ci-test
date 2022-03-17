@@ -14,7 +14,6 @@ on:
 jobs:
   publish_release:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' && contains(github.ref, 'refs/tags/')
 
     steps: 
     - name: Checkout riseclipse-developer
@@ -26,5 +25,5 @@ jobs:
 
     - name: release_ossrh_central
       run: |
-        cd riseclipse-developer
+        cd riseclipse-developer/fr.centralesupelec.edf.riseclipse.developer.maven.validator.scl
         mvn release:perform
