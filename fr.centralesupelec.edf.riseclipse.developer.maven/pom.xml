@@ -117,7 +117,7 @@
     <maven-gpg-plugin-version>3.0.1</maven-gpg-plugin-version>
 
     <tycho-group-id>org.eclipse.tycho</tycho-group-id>
-    <tycho-version>2.6.0</tycho-version>
+    <tycho-version>2.5.0</tycho-version>
     
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>11</maven.compiler.source>
