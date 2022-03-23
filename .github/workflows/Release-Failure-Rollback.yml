@@ -10,7 +10,7 @@ on:
     branches: [master, main]
 
 jobs:
-    call-failure-workflow:
+  call-failure-workflow:
     name: Rollback
     uses: riseclipse/riseclipse-workflows/.github/workflows/Release-Failure-Rollback.yml@master
     with:
