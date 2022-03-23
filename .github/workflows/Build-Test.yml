@@ -1,8 +1,7 @@
 name: Build and test
 
-# This CI workflow is trigger automatically for EVERY COMMIT or whenever a PULL REQUEST is REOPENED (open is already triggered by push)
-# On PR creation, we only execute build and run tests since we don't want to release yet
-# On master, the build artifacts will be used for releases 
+# This CI workflow is triggered automatically for EVERY COMMIT or whenever a PULL REQUEST is OPENED/REOPENED
+# It runs the building / testing workflow
 
 on: 
   push: # Triggered every time on push
