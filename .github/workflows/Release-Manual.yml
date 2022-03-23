@@ -9,8 +9,8 @@ jobs:
     with:
       build-path: fr.centralesupelec.edf.riseclipse.editor
   call-release-github-workflow:
-    name: Release
+    name: Release GH
     uses: riseclipse/riseclipse-workflows/.github/workflows/Release-GitHub.yml@master
   call-release-maven-workflow:
-    name: Release
+    name: Release MVN
     uses: riseclipse/riseclipse-workflows/.github/workflows/Release-Maven.yml@master
