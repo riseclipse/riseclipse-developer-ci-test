@@ -14,3 +14,4 @@ jobs:
     uses: riseclipse/riseclipse-workflows/.github/workflows/Build-Test.yml@master
     with:
       build-path: fr.centralesupelec.edf.riseclipse.developer.maven.validator.scl
+      
