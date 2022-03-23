@@ -11,6 +11,8 @@ on:
 
 jobs:
     call-failure-workflow:
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
     name: Rollback
     uses: riseclipse/riseclipse-workflows/.github/workflows/Release-Failure-Rollback.yml@master
+    with:
+      status: ${{ github.event.workflow_run.conclusion == 'failure' }}
+      build-path: fr.centralesupelec.edf.riseclipse.maven.validator.scl
