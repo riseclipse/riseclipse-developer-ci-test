@@ -12,6 +12,7 @@ on:
 jobs:
   on-failure:
     if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-    
+    name: Rollback due to failure
+
     call-failure-workflow:
     uses: riseclipse/riseclipse-workflows/.github/workflows/Release-Failure-Rollback.yml@master

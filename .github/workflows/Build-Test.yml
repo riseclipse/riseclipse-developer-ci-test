@@ -10,8 +10,8 @@ on:
     types: [reopened] 
 
 jobs:
+  name: Build / Test
   call-build-test-workflow:
     uses: riseclipse/riseclipse-workflows/.github/workflows/Build-Test.yml@master
     with:
-      build-path: fr.centralesupelec.edf.riseclipse.developer.maven.validator.scl
-      
+      buildPath: fr.centralesupelec.edf.riseclipse.developer.maven.validator.scl
