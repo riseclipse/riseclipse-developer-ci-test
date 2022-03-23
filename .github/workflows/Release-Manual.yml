@@ -3,9 +3,11 @@ name: Release manual
 on: workflow_dispatch  # Manual trigger only for master/main
 
 jobs:
-  nothing:
-    runs-on: ubuntu-latest
-
-    steps: 
-    - name: Does nothing
-      run: echo "This workflow is only used to trigger the Build and Test workflow that will also trigger the releases if it is on main branch"
+  call-build-test-workflow:
+    uses: riseclipse/riseclipse-workflows/.github/workflows/Build-Test.yml@master
+    with:
+      build-path: fr.centralesupelec.edf.riseclipse.editor
+  call-release-github-workflow:
+    uses: riseclipse/riseclipse-workflows/.github/workflows/Release-GitHub.yml@master
+  call-release-maven-workflow:
+    uses: riseclipse/riseclipse-workflows/.github/workflows/Release-Maven.yml@master
