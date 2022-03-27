@@ -29,7 +29,7 @@ jobs:
         path: riseclipse.github.io
         repository: RiseClipse/riseclipse.github.io
         ref: dev-ci
-        token: ${{secrets.GITHUB_TOKEN}}
+        token: ${{secrets.IO_TOKEN}}
 
     - name: Checkout riseclipse-developer
       uses: actions/checkout@v2
