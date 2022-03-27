@@ -61,5 +61,5 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: ${{ github.workspace }}/artifacts/*
-        tag: ${{ steps.get_version.outputs.project_version }}
+        tag: v${{ steps.get_version.outputs.project_version }}
         file_glob: true
