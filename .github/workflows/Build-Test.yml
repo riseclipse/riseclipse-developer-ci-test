@@ -143,9 +143,9 @@ jobs:
         distribution: 'adopt'
         cache: maven
 
-    - name: Run tests  
-      run: | 
-        cd riseclipse-validator-scl2003-test    
-        echo ${{ github.workspace }} 
-        ls ${{ github.workspace }} 
-        ./scripts/run_tests.sh -o -n -j ${{ github.workspace }}/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar
+    # - name: Run tests  
+    #   run: | 
+    #     cd riseclipse-validator-scl2003-test    
+    #     echo ${{ github.workspace }} 
+    #     ls ${{ github.workspace }} 
+    #     ./scripts/run_tests.sh -o -n -j ${{ github.workspace }}/RiseClipseValidatorSCL-${{ needs.build.outputs.project_version }}.jar
