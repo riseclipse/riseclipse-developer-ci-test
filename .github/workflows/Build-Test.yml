@@ -1,14 +1,11 @@
 name: Build and test
 
-# This CI workflow is trigger automatically for EVERY COMMIT or whenever a PULL REQUEST is REOPENED (open is already triggered by push)
+# This CI workflow is trigger automatically for EVERY COMMIT or whenever a PULL REQUEST is opened/reopened
 # On PR creation, we only execute build and run tests since we don't want to release yet
-# On master, the build artifacts will be used for releases 
+# On master, the buildt artifacts will be used for releases 
 
 on: 
-  push: # Triggered every time on push except on master
-    branches-ignore:
-      - master
-      - main 
+  push: # Triggered every time 
   pull_request: # Trigger on PR
     types: [opened, reopened] 
   workflow_run:  # Trigger when requested manually from Release-Manual Workflow

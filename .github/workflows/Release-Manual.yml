@@ -3,9 +3,9 @@ name: Release manual
 on: workflow_dispatch  # Manual trigger only for master/main
 
 jobs:
-  nothing:
+  start_release_workflows:
     runs-on: ubuntu-latest
 
     steps: 
-    - name: Does nothing
+    - name: Start release workflows
       run: echo "This workflow is only used to trigger the Build and Test workflow that will also trigger the releases if it is on main branch"

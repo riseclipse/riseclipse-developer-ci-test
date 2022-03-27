@@ -12,7 +12,6 @@ on:
 
 jobs:
   publish_release:
-    needs: [build, test]
     runs-on: ubuntu-latest
 
     steps: 
