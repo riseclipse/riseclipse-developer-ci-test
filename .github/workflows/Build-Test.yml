@@ -12,6 +12,7 @@ on:
 
 jobs:
   build:
+    name: Build Project
     runs-on: ubuntu-latest
     outputs:
       project_version: ${{ steps.get_version.outputs.project_version }}
@@ -106,6 +107,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    name: Test Project
     needs: [build]
 
     steps: 

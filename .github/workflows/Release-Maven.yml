@@ -19,5 +19,5 @@ jobs:
 
     - name: release_ossrh_central
       run: |
-        cd riseclipse-developer/fr.centralesupelec.edf.riseclipse.developer.maven.validator.scl
+        cd ${{ github.event.repository.name }}/fr.centralesupelec.edf.riseclipse.developer.maven.validator.scl
         # mvn release:perform

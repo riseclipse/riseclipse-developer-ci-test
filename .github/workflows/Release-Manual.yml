@@ -24,6 +24,8 @@ jobs:
     name: Release on RiseClipse.io
     needs: [build-test]
     uses: ./.github/workflows/Release-GitHub-IO.yml
+    secrets:
+      io_token: ${{ secrets.IO_TOKEN }}
 
   release-dockerhub:
     name: Release on DockerHub

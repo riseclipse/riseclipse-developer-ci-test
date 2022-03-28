@@ -3,7 +3,11 @@ name: Release on GitHub IO site
 # This CD workflow releases packages to GitHub IO website
 # It only runs on MASTER branch AFTER Build and Test Workflow is completed if it was triggered by Release Workflow
 
-on: workflow_call
+on: 
+  workflow_call:
+    secrets:
+      io_token:
+        required: true
 
 jobs:
   publish_github_io:
@@ -25,7 +29,7 @@ jobs:
         path: riseclipse.github.io
         repository: RiseClipse/riseclipse.github.io
         ref: dev-ci # A CHANGER POUR MASTER UNE FOIS VALIDE
-        token: ${{secrets.IO_TOKEN}}
+        token: ${{ secrets.io_token }}
 
     - name: Checkout ${{ github.event.repository.name }}
       uses: actions/checkout@v2
