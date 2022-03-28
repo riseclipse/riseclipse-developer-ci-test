@@ -1,14 +1,9 @@
 name: Release DockerHub
 
 # This CD workflow releases packages to Docker Hub
-# It only runs on MASTER branch AFTER Build and Test Workflow is completed AND if commit is tagged (which is done when merging previous commits)
+# It only runs on MASTER branch AFTER Build and Test Workflow is completed if it was triggered by Release Workflow
 
-on:
-  workflow_run:
-    workflows: [Build and test]
-    types:
-      - completed
-    branches: [master, main]
+on: workflow_call
 
 jobs:
   publish_dockerhub:
@@ -28,7 +23,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         path: riseclipse-developer
-        ref: master
+        ref: ${{ github.ref_name }}
 
     - name: Extract Maven project version
       run: |

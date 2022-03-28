@@ -1,14 +1,9 @@
 name: Release on GitHub 
 
 # This CD workflow releases packages to GitHub repository AND creates a new release branch
-# It only runs on MASTER branch AFTER Build and Test Workflow is completed AND if commit is tagged (which is done when merging previous commits)
+# It only runs on MASTER branch AFTER Build and Test Workflow is completed if it was triggered by Release Workflow
 
-on:
-  workflow_run:
-    workflows: [Build and test]
-    types:
-      - completed
-    branches: [master, main]
+on: workflow_call
 
 jobs:
   publish_release:
@@ -24,11 +19,11 @@ jobs:
         workflow_conclusion: success
         path: ${{ github.workspace }}/artifacts
 
-    - name: Checkout riseclipse-developer
+    - name: Checkout ${{ github.event.repository.name }}
       uses: actions/checkout@v2
       with:
-        path: riseclipse-developer
-        ref: master
+        path: ${{ github.event.repository.name }}
+        ref: ${{ github.ref_name }}
 
     - name: Extract Maven project version
       run: |
@@ -52,14 +47,13 @@ jobs:
       with:
         tag_name: v${{ steps.get_version.outputs.project_version }}
         release_name: RiseClipse ${{ steps.get_version.outputs.project_version }}
-        body: This RiseClipse release contains the latest changes available. The ZIP file contains a CLI and UI version of the project. You can learn more by reading the documentation.
+        body: This RiseClipse release contains the latest changes available. Contains a CLI and UI version of the project. You can learn more by reading the documentation.
         draft: false
         prerelease: false
 
     - name: Upload binaries to release
-      uses: svenstaro/upload-release-action@v2
+      uses: AButler/upload-release-assets@v2.0
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ${{ github.workspace }}/artifacts/*
-        tag: v${{ steps.get_version.outputs.project_version }}
-        file_glob: true
+        files: ${{ github.workspace }}/artifacts/*.jar;${{ github.workspace }}/artifacts/*.jar/*.jar
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        release-tag: v${{ steps.get_version.outputs.project_version }}

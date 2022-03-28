@@ -2,17 +2,11 @@ name: Rollback Failure
 
 # If for some reason one of the release workflows failed, rollback and delete release branch
 
-on:
-  workflow_run:
-    workflows: [Build and test, Release DockerHub, Release on GitHub IO site, Release on GitHub, Release on OSSRH and Maven Central]
-    types:
-      - completed
-    branches: [master, main]
+on: workflow_call
 
 jobs:
   on-failure:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
 
     steps:
     # Get artefacts and version
@@ -20,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: riseclipse-developer
-          ref: master
+          ref: ${{ github.ref_name }}
 
       - name: Extract Maven project version
         run: |

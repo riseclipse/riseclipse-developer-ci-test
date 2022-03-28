@@ -5,14 +5,10 @@ name: Build and test
 # On master, the buildt artifacts will be used for releases 
 
 on: 
-  push: # Triggered every time 
+  push: # Triggered every time on push
   pull_request: # Trigger on PR
-    types: [opened, reopened] 
-  workflow_run:  # Trigger when requested manually from Release-Manual Workflow
-    workflows: [Release manual]
-    types:
-      - completed
-    branches: [master, main]
+    types: [opened, reopened]
+  workflow_call: # Manual call for Release
 
 jobs:
   build:
@@ -26,7 +22,7 @@ jobs:
       with:
         path: riseclipse-metamodel-nsd2016
         repository: RiseClipse/riseclipse-metamodel-nsd2016
-        ref: master
+        ref: ${{ github.ref_name }}
 
     - name: Checkout riseclipse-validator-scl2003
       uses: actions/checkout@v2
@@ -40,28 +36,28 @@ jobs:
       with:
         path: riseclipse-validator-ocl
         repository: RiseClipse/riseclipse-validator-ocl
-        ref: master
+        ref: ${{ github.ref_name }}
 
     - name: Checkout riseclipse-metamodel-scl2003
       uses: actions/checkout@v2
       with:
         path: riseclipse-metamodel-scl2003
         repository: RiseClipse/riseclipse-metamodel-scl2003
-        ref: master
+        ref: ${{ github.ref_name }}
 
     - name: Checkout riseclipse-editor
       uses: actions/checkout@v2
       with:
         path: riseclipse-editor
         repository: RiseClipse/riseclipse-editor
-        ref: master
+        ref: ${{ github.ref_name }}
 
     - name: Checkout riseclipse-main
       uses: actions/checkout@v2
       with:
         path: riseclipse-main
         repository: RiseClipse/riseclipse-main
-        ref: master
+        ref: ${{ github.ref_name }}
 
     - name: Checkout riseclipse-developer
       uses: actions/checkout@v2
@@ -118,14 +114,14 @@ jobs:
       with:
         path: riseclipse-validator-scl2003-test
         repository: RiseClipse/riseclipse-validator-scl2003-test
-        ref: master
+        ref: ${{ github.ref_name }}
 
     - name: Checkout riseclipse-validator-scl2003
       uses: actions/checkout@v2
       with:
         path: riseclipse-validator-scl2003
         repository: RiseClipse/riseclipse-validator-scl2003
-        ref: master
+        ref: ${{ github.ref_name }}
 
     - name: Download artifact .jar
       uses: actions/download-artifact@master

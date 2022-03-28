@@ -1,13 +1,9 @@
 name: Release on GitHub IO site
 
 # This CD workflow releases packages to GitHub IO website
-# It only runs on MASTER branch AFTER Build and Test Workflow is completed AND if commit is tagged (which is done when merging previous commits)
-on:
-  workflow_run:
-    workflows: [Build and test]
-    types:
-      - completed
-    branches: [master, main]
+# It only runs on MASTER branch AFTER Build and Test Workflow is completed if it was triggered by Release Workflow
+
+on: workflow_call
 
 jobs:
   publish_github_io:
@@ -28,14 +24,14 @@ jobs:
       with:
         path: riseclipse.github.io
         repository: RiseClipse/riseclipse.github.io
-        ref: dev-ci
+        ref: dev-ci # A CHANGER POUR MASTER UNE FOIS VALIDE
         token: ${{secrets.IO_TOKEN}}
 
-    - name: Checkout riseclipse-developer
+    - name: Checkout ${{ github.event.repository.name }}
       uses: actions/checkout@v2
       with:
-        path: riseclipse-developer
-        ref: master
+        path: ${{ github.event.repository.name }}
+        ref: ${{ github.ref_name }}
 
     - name: Extract Maven project version
       run: |
