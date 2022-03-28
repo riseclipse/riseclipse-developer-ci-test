@@ -25,10 +25,10 @@ jobs:
         workflow_conclusion: success
         path: ${{ github.workspace }}
 
-    - name: Checkout riseclipse-developer
+    - name: Checkout ${{ github.event.repository.name }}
       uses: actions/checkout@v2
       with:
-        path: riseclipse-developer
+        path: ${{ github.event.repository.name }}
         ref: ${{ github.ref_name }}
 
     - name: Extract Maven project version
@@ -56,7 +56,7 @@ jobs:
       with:
         path: riseclipse-validator-scl2003
         repository: RiseClipse/riseclipse-validator-scl2003
-        ref: ${{ github.ref_name }}
+        ref: dev-ci # TO BE CHANGED TO MASTER ONCE VALIDATED
 
     # Build and push images for each validator
     - name: Build and push Docker image Validator SCL CLI
