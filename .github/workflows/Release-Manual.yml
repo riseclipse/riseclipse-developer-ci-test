@@ -31,6 +31,9 @@ jobs:
     name: Release on DockerHub
     needs: [build-test]
     uses: ./.github/workflows/Release-DockerHub.yml
+    secrets:
+      docker_user: ${{ secrets.DOCKER_USERNAME }}
+      docker_pswd: ${{ secrets.DOCKER_PASSWORD }}
 
   rollback-if-failure:
     name: Rollback if failed
