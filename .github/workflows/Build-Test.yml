@@ -9,6 +9,16 @@ on:
   pull_request: # Trigger on PR
     types: [opened, reopened]
   workflow_call: # Manual call for Release
+    inputs:
+      secrets:
+      RISECLIPSE_PGP_KEY_PRIVATE:
+        required: true
+      RISECLIPSE_PGP_KEY_PASSWORD:
+        required: true
+      RISECLIPSE_OSSRH_USERNAME:
+        required: true
+      RISECLIPSE_OSSRH_PASSWORD:
+        required: true
 
 jobs:
   build:
@@ -18,60 +28,23 @@ jobs:
       project_version: ${{ steps.get_version.outputs.project_version }}
 
     steps: 
-    - name: Checkout riseclipse-metamodel-nsd2016
-      uses: actions/checkout@v2
-      with:
-        path: riseclipse-metamodel-nsd2016
-        repository: RiseClipse/riseclipse-metamodel-nsd2016
-        ref: ${{ github.ref_name }}
-
-    - name: Checkout riseclipse-validator-scl2003
-      uses: actions/checkout@v2
-      with:
-        path: riseclipse-validator-scl2003
-        repository: RiseClipse/riseclipse-validator-scl2003
-        ref: dev-ci
-
-    - name: Checkout riseclipse-validator-ocl
-      uses: actions/checkout@v2
-      with:
-        path: riseclipse-validator-ocl
-        repository: RiseClipse/riseclipse-validator-ocl
-        ref: ${{ github.ref_name }}
-
-    - name: Checkout riseclipse-metamodel-scl2003
-      uses: actions/checkout@v2
-      with:
-        path: riseclipse-metamodel-scl2003
-        repository: RiseClipse/riseclipse-metamodel-scl2003
-        ref: ${{ github.ref_name }}
-
-    - name: Checkout riseclipse-editor
-      uses: actions/checkout@v2
-      with:
-        path: riseclipse-editor
-        repository: RiseClipse/riseclipse-editor
-        ref: ${{ github.ref_name }}
-
-    - name: Checkout riseclipse-main
-      uses: actions/checkout@v2
-      with:
-        path: riseclipse-main
-        repository: RiseClipse/riseclipse-main
-        ref: ${{ github.ref_name }}
-
     - name: Checkout riseclipse-developer
       uses: actions/checkout@v2
       with:
         path: riseclipse-developer
         ref: ${{ github.ref_name }}
 
-    - name: Set up JDK 11
+    - name: Setup Environment
       uses: actions/setup-java@v2
       with:
+        distribution: 'temurin'
         java-version: '11'
-        distribution: 'adopt'
-        cache: maven
+        cache: 'maven'
+        server-id: ossrh # Value of the distributionManagement/repository/id field of the pom.xml
+        server-username: MAVEN_USERNAME
+        server-password: MAVEN_PASSWORD
+        gpg-private-key: ${{ secrets.RISECLIPSE_PGP_KEY_PRIVATE }}
+        gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
     - name: Build with Maven 
       run: |
